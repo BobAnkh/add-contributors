@@ -10,7 +10,7 @@ Now is under test
 
 ## Usage
 
-Create a workflow file such as `.github/workflows/contributors.yml`
+Create a workflow file such as `.github/workflows/contributors.yml` (you can find this workflow file in this repo)
 
 ```yaml
 name: Add contributors
