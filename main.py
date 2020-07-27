@@ -10,6 +10,7 @@ tail = '''
 </tr>
 </table>'''
 
+
 def github_login(ACCESS_TOKEN, REPO_NAME):
     '''
     Use Pygithub to login to the repository
@@ -29,6 +30,7 @@ def github_login(ACCESS_TOKEN, REPO_NAME):
     repo = g.get_repo(REPO_NAME)
     return repo
 
+
 def get_inputs(input_name):
     '''
     Get a Github actions input by name
@@ -45,7 +47,9 @@ def get_inputs(input_name):
     '''
     return os.getenv('INPUT_{}'.format(input_name).upper())
 
-def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size, head_format, tail_format):
+
+def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
+                          head_format, tail_format):
     '''
     Generate the contributors list using a given template
 
@@ -59,7 +63,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size, head_forma
 
     Returns:
         string: contributors list
-    '''    
+    '''
     USER = 0
     HEAD = head_format
     TAIL = tail_format
@@ -118,6 +122,7 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
     else:
         pass
 
+
 def main():
     ACCESS_TOKEN = get_inputs('ACCESS_TOKEN')
     REPO_NAME = get_inputs('REPO_NAME')
@@ -128,8 +133,10 @@ def main():
     PATH = get_inputs('PATH')
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
     repo = github_login(ACCESS_TOKEN, REPO_NAME)
-    CONTRIBUTORS_LIST = generate_contributors(repo, COLUMN_PER_ROW, IMG_WIDTH, FONT_SIZE, head, tail)
-    write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE, CONTRIBUTOR)
+    CONTRIBUTORS_LIST = generate_contributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
+                                              FONT_SIZE, head, tail)
+    write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE,
+                       CONTRIBUTOR)
 
 
 if __name__ == '__main__':
