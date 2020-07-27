@@ -110,7 +110,7 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
         end = str[1].split(tail)
         end[0] = end[0] + tail
     else:
-        end = ['\n\n', str[1]]
+        end = ['', '\n\n' + str[1]]
     if end[0] != contributors_list:
         end[0] = contributors_list
         text = str[0] + CONTRIB + end[0] + end[1]
