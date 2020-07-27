@@ -17,9 +17,8 @@ inputs:
     required: false
     default: '6'
   ACCESS_TOKEN:
-    description: "Github Access Token"
-    required: false
-    default: ${{secrets.GITHUB_TOKEN}}
+    description: "Github Access Token you want to use. Just pass `${{secrets.GITHUB_TOKEN}}`"
+    required: true
   IMG_WIDTH:
     description: "Width of img"
     required: false
