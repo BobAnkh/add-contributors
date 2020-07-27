@@ -60,6 +60,16 @@ See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for details
 
 ### Contributors
 
-## LICENSE
+<table>
+<tr>
+    <td align="center">
+        <a href=https://github.com/BobAnkh>
+            <img src=https://avatars2.githubusercontent.com/u/44333669?v=4 width="100;" alt=BobAnkh/>
+            <br />
+            <sub style="font-size:14px"><b>BobAnkh</b></sub>
+        </a>
+    </td>
+</tr>
+</table>## LICENSE
 
 [Apache-2.0](/LICENSE) © BobAnkh
