@@ -121,7 +121,7 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
 def main():
     ACCESS_TOKEN = get_inputs('ACCESS_TOKEN')
     REPO_NAME = get_inputs('REPO_NAME')
-    CONTRIB = get_inputs('CONTRIB') + '\n\n'
+    CONTRIBUTOR = get_inputs('CONTRIBUTOR') + '\n\n'
     COLUMN_PER_ROW = int(get_inputs('COLUMN_PER_ROW'))
     IMG_WIDTH = int(get_inputs('IMG_WIDTH'))
     FONT_SIZE = int(get_inputs('FONT_SIZE'))
@@ -129,7 +129,7 @@ def main():
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
     repo = github_login(ACCESS_TOKEN, REPO_NAME)
     CONTRIBUTORS_LIST = generate_contributors(repo, COLUMN_PER_ROW, IMG_WIDTH, FONT_SIZE, head, tail)
-    write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE, CONTRIB)
+    write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE, CONTRIBUTOR)
 
 
 if __name__ == '__main__':
