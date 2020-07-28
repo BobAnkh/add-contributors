@@ -8,7 +8,7 @@ pull_request_rules:
       comment:
         message: |
           Thanks for opening this pull request! 
-          Please check out the [Contributing Guidelines](https://github.com/BobAnkh/add-contributors/blob/master/CONTRIBUTING.md).
+          Please check out the [Contributing Guidelines](https://github.com/BobAnkh/LinuxBeginner/blob/master/CONTRIBUTING.md).
   - name: Assign author
     conditions:
       - "-closed"
@@ -43,7 +43,7 @@ pull_request_rules:
           - bug
   - name: Label documentation
     conditions:
-      - head~=^docs\/[a-zA-Z0-9-_\/]+$
+      - head~=^docs\/[a-zA-Z0-9-_\/]+$|^LinuxCommand\/[a-zA-Z0-9-_\/]+$|^LinuxTool\/[a-zA-Z0-9-_\/]+$
     actions:
       label:
         add:
@@ -72,10 +72,10 @@ pull_request_rules:
         message: |
           @{{author}}
           Wrong PR Title: {{title}}
-          Please check [Contributing Guidelines](https://github.com/BobAnkh/add-contributors/blob/master/CONTRIBUTING.md) for more information.
+          Please check [Contributing Guidelines](https://github.com/BobAnkh/LinuxBeginner/blob/master/CONTRIBUTING.md) for more information.
   - name: branch name check comment
     conditions:
-      - "status-failure=validate-branch-name"
+      - "-head~=^(master|develop|((dependabot|chore|docs|LinuxCommand|LinuxTool|feature|feat|fix|refactor|style|test|build|release)\/[a-zA-Z0-9-_\/]{1,64}))$"
       - "-closed"
       - "-merged"
     actions:
@@ -83,7 +83,7 @@ pull_request_rules:
         message: |
           @{{author}}
           Wrong branch name: {{head}}
-          Please check details and [Contributing Guidelines](https://github.com/BobAnkh/add-contributors/blob/master/CONTRIBUTING.md) for more information.
+          Please check details and [Contributing Guidelines](https://github.com/BobAnkh/LinuxBeginner/blob/master/CONTRIBUTING.md) for more information.
           This Pull Request will be closed.
       label:
         add:
@@ -99,7 +99,7 @@ pull_request_rules:
         message: |
           @{{author}}
           Contribution Message Convention Tests failed with GitMagic.
-          Please check details and [Contributing Guidelines](https://github.com/BobAnkh/add-contributors/blob/master/CONTRIBUTING.md) for more information.
+          Please check details and [Contributing Guidelines](https://github.com/BobAnkh/LinuxBeginner/blob/master/CONTRIBUTING.md) for more information.
   - name: markdownlint check comment
     conditions:
       - "status-failure=markdownlint-cli-check"
@@ -110,7 +110,7 @@ pull_request_rules:
         message: |
           @{{author}}
           Markdown Files Check failed with markdownlint.
-          Please check details or [Contributing Guidelines](https://github.com/BobAnkh/add-contributors/blob/master/CONTRIBUTING.md) for more information.
+          Please check details or [Contributing Guidelines](https://github.com/BobAnkh/LinuxBeginner/blob/master/CONTRIBUTING.md) for more information.
   - name: conflict comment
     conditions:
       - "-closed"
@@ -127,7 +127,6 @@ pull_request_rules:
     conditions:
       - status-success=Title Validator
       - status-success=gitmagic/rules
-      - status-success=validate-branch-name
       - status-success=markdownlint-cli-check
       - "-closed"
       - "-draft"
@@ -145,7 +144,6 @@ pull_request_rules:
       - "#approved-reviews-by>=1"
       - status-success=Title Validator
       - status-success=gitmagic/rules
-      - status-success=validate-branch-name
       - status-success=markdownlint-cli-check
       - label!=invalid
       - "-closed"
@@ -169,7 +167,6 @@ pull_request_rules:
       - author=BobAnkh
       - status-success=Title Validator
       - status-success=gitmagic/rules
-      - status-success=validate-branch-name
       - status-success=markdownlint-cli-check
       - label!=invalid
       - "-closed"
@@ -186,7 +183,6 @@ pull_request_rules:
       - author=dependabot[bot]
       - "#approved-reviews-by>=1"
       - "-status-failure=Title Validator"
-      - "-status-failure=validate-branch-name"
       - label!=invalid
       - "-closed"
       - "-draft"
@@ -196,3 +192,4 @@ pull_request_rules:
       merge:
         method: merge
         strict: smart+fasttrack
+        strict_method: rebase
