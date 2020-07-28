@@ -1,22 +1,27 @@
 # add-contributors
 
-A Github Action to add contributors to your markdown file(i.e. README.md) automatically on schedule
+![language-python](https://img.shields.io/github/languages/top/BobAnkh/add-contributors?logo=python&logoColor=yellow)
+![LICENSE Apache-2.0](https://img.shields.io/github/license/BobAnkh/add-contributors?logo=apache)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/BobAnkh/add-contributors?color=orange&logo=github-actions)
 
-Specifically handle unreachable Chinese context
+A Github Action to add contributors to your markdown file(i.e. README.md) automatically on schedule or triggered by events
 
-着重解决了中文内容乱码的问题
+Specifically handle unreachable Chinese context (着重解决了中文内容乱码的问题)
 
-Now is under test
+Feel free to submit a pull request or an issue, but make sure to follow the templates
 
 ## Usage
 
-Create a workflow file such as `.github/workflows/contributors.yml` (you can find this workflow file in this repo)
+Create a workflow file such as `.github/workflows/contributors.yml` (you can find it in this repo)
 
 ```yaml
 name: Add contributors
 on:
   schedule:
     - cron:  '20 20 * * *'
+# push:
+#   branches:
+#     - master
 
 jobs:
   add-contributors:
@@ -56,7 +61,9 @@ jobs:
 
 ## How to contribute
 
-See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for details
+You should follow our [Code of Conduct](/CODE_OF_CONDUCT.md)
+
+See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for contributing conventions
 
 ### Contributors
 
