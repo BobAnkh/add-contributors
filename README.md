@@ -38,6 +38,7 @@ jobs:
         FONT_SIZE: '14'
         PATH: '/README.md'
         COMMIT_MESSAGE: 'docs(README): update contributors'
+        AVATAR_SHAPE: 'round'
 ```
 
 ### Parameters
@@ -52,6 +53,7 @@ jobs:
 | FONT_SIZE | Font size of name (px) | no | `14` |
 | PATH | Path to the file you want to add contributors' list | no | `/README.md` |
 | COMMIT_MESSAGE | commit message | no | `docs(README): update contributors` |
+| AVATAR_SHAPE | Set `round` for round avatar and `square` for square avatar | no | square |
 
 > NOTE: You should leave a blank line after the `CONTRIBUTOR` line for the first time
 

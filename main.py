@@ -49,7 +49,7 @@ def get_inputs(input_name):
 
 
 def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
-                          head_format, tail_format):
+                          head_format, tail_format, shape):
     '''
     Generate the contributors list using a given template
 
@@ -60,6 +60,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
         font_size (int): font size of name
         head_format (string): html_format for table head
         tail_format (string): html_format for table tail
+        shape (string): round for round avatar and square for square avatar
 
     Returns:
         string: contributors list
@@ -80,10 +81,14 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
             new_tr = '''\n</tr>\n<tr>'''
             HEAD = HEAD + new_tr
             USER = 0
+        if shape == 'round':
+            img_style = ' style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;"'
+        else:
+            img_style = ''
         td = f'''
     <td align="center">
         <a href={html_url}>
-            <img src={avatar_url} width="{img_width};" alt={name}/>
+            <img src={avatar_url} width="{img_width};"{img_style} alt={name}/>
             <br />
             <sub style="font-size:{font_size}px"><b>{name}</b></sub>
         </a>
@@ -132,9 +137,11 @@ def main():
     FONT_SIZE = int(get_inputs('FONT_SIZE'))
     PATH = get_inputs('PATH')
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
+    AVATAR_SHAPE = get_inputs('AVATAR_SHAPE')
     repo = github_login(ACCESS_TOKEN, REPO_NAME)
     CONTRIBUTORS_LIST = generate_contributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
-                                              FONT_SIZE, head, tail)
+                                              FONT_SIZE, head, tail,
+                                              AVATAR_SHAPE)
     write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE,
                        CONTRIBUTOR)
 
