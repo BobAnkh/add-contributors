@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.0.3](https://github.com/BobAnkh/add-contributors/tree/v0.0.3) (2020-07-28)
+
 ## [v0.0.2](https://github.com/BobAnkh/add-contributors/tree/v0.0.2) (2020-07-27)
 
 ## [v0.0.1](https://github.com/BobAnkh/add-contributors/tree/v0.0.1) (2020-07-26)
