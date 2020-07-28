@@ -73,7 +73,7 @@ See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for contributing conventions
 <tr>
     <td align="center">
         <a href=https://github.com/BobAnkh>
-            <img src=https://avatars2.githubusercontent.com/u/44333669?v=4 width="100;" alt=BobAnkh/>
+            <img src=https://avatars2.githubusercontent.com/u/44333669?v=4 width="100;" style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;" alt=BobAnkh/>
             <br />
             <sub style="font-size:14px"><b>BobAnkh</b></sub>
         </a>
