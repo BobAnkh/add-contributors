@@ -140,7 +140,8 @@ def main():
     AVATAR_SHAPE = get_inputs('AVATAR_SHAPE')
     repo = github_login(ACCESS_TOKEN, REPO_NAME)
     CONTRIBUTORS_LIST = generate_contributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
-                                              FONT_SIZE, head, tail, AVATAR_SHAPE)
+                                              FONT_SIZE, head, tail,
+                                              AVATAR_SHAPE)
     write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE,
                        CONTRIBUTOR)
 
