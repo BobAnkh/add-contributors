@@ -56,6 +56,8 @@ jobs:
 | AVATAR_SHAPE | Set `round` for round avatar and `square` for square avatar | no | square |
 
 > NOTE: You should leave a blank line after the `CONTRIBUTOR` line for the first time
+>
+> NOTE: Github seems not support image style in markdown file rendering yet
 
 ## Maintainer
 
