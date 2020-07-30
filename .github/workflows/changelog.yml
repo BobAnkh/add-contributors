@@ -1,26 +1,27 @@
 name: Generate changelog
-# Trigger the workflow on pull request activity
 on:
   release:
-    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
     types: [created, edited]
+# push:
+#   branches:
+#     - master
+
 jobs:
-  add-contributors:
+  generate-changelog:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Conventional Changelog Action
-      id: generate-changelog
-      uses: heinrichreimer/github-changelog-generator-action@v2.1.1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: commit
-      run: |
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com>"
-        git config --global user.name "github-actions[bot]"
-        git commit -m "chore(changelog): update changelog" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+        fetch-depth: 0
+    - uses: BobAnkh/auto-generate-changelog@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: 'master'
+        REPO_NAME: 'BobAnkh/add-contributor'
+        ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        PATH: '/CHANGELOG.md'
+        COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
+        FEAT: '1'
+        FIX: '1'
+        DOCS: '1'
+        CHORE: '1'
+        REFACTOR: '1'
+        PERF: '1'
