@@ -8,7 +8,7 @@ We adopt a series of automation tools to check, contributions not following the 
 
 Here are the contributing conventions we'd like you to follow:
 
-## 关于Commit的规范
+## About Commit
 
 Each commit should contain relatively independent change (that is, a hodgepodge of multiple types of modifications is not allowed to be submitted in one commit), and the specific changes need to be clarified in the message
 
