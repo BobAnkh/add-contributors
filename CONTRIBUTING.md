@@ -154,9 +154,9 @@ Use `rebase` method or `pull --rebase` method to update your branch so as to mak
 
 The project has configured several automation check tools. Please wait a moment after your Pull Request submitted and deal with some issues according to the comments and details of check tools
 
-## Requirements for files of different languages
+## Conventions for files of different languages
 
-Files of different languages should be checked locally according to the following requirements
+Files of different languages should be checked locally according to the following conventions
 
 Commits should be made after all checks pass
 
