@@ -10,6 +10,8 @@ Specifically handle unreachable Chinese context (着重解决了中文内容乱�
 
 Feel free to submit a pull request or an issue, but make sure to follow the templates
 
+Welcome contributors to improve this project together!
+
 ## Usage
 
 Create a workflow file such as `.github/workflows/contributors.yml` (you can find it in this repo)
