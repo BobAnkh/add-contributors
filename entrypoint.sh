@@ -4,9 +4,9 @@
  # @Github: https://github.com/BobAnkh
  # @Date: 2020-07-29 11:47:58
  # @LastEditors: BobAnkh
- # @LastEditTime: 2020-08-02 22:31:52
+ # @LastEditTime: 2020-08-02 22:32:22
  # @FilePath: /add-contributors/entrypoint.sh
- # @Description: 
+ # @Description: Entrypoint of Github Action
  # @Copyright 2020 BobAnkh
 ### 
 

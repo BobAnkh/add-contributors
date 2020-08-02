@@ -5,9 +5,9 @@ Author: BobAnkh
 Github: https://github.com/BobAnkh
 Date: 2020-07-29 00:12:39
 LastEditors: BobAnkh
-LastEditTime: 2020-08-02 22:23:06
+LastEditTime: 2020-08-02 22:32:39
 FilePath: /add-contributors/main.py
-Description: 
+Description: Main script of Github Action
 Copyright 2020 BobAnkh
 '''
 import base64
