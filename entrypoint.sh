@@ -1,4 +1,15 @@
 #!/bin/bash
+###
+ # @Author: BobAnkh
+ # @Github: https://github.com/BobAnkh
+ # @Date: 2020-07-29 11:47:58
+ # @LastEditors: BobAnkh
+ # @LastEditTime: 2020-08-02 22:31:52
+ # @FilePath: /add-contributors/entrypoint.sh
+ # @Description: 
+ # @Copyright 2020 BobAnkh
+### 
+
 set -e
 
 python -m pip install --upgrade pip setuptools wheel
