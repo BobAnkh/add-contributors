@@ -1,8 +1,21 @@
-from github import Github
-import sys
-import re
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+'''
+Author: BobAnkh
+Github: https://github.com/BobAnkh
+Date: 2020-07-29 00:12:39
+LastEditors: BobAnkh
+LastEditTime: 2020-08-02 22:23:06
+FilePath: /add-contributors/main.py
+Description: 
+Copyright 2020 BobAnkh
+'''
 import base64
 import os
+import re
+import sys
+
+from github import Github
 
 head = '''<table>
 <tr>'''
@@ -13,7 +26,7 @@ tail = '''
 
 def github_login(ACCESS_TOKEN, REPO_NAME):
     '''
-    Use Pygithub to login to the repository
+    Use PyGithub to login to the repository
 
     Args:
         ACCESS_TOKEN (string): github Access Token
