@@ -1,19 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''
-Author: BobAnkh
-Github: https://github.com/BobAnkh
-Date: 2020-07-29 00:12:39
-LastEditors: BobAnkh
-LastEditTime: 2020-08-02 22:32:39
-FilePath: /add-contributors/main.py
-Description: Main script of Github Action
-Copyright 2020 BobAnkh
-'''
+
+# @Author       : BobAnkh
+# @Github       : https://github.com/BobAnkh
+# @Date         : 2020-07-29 00:12:39
+# @LastEditors  : BobAnkh
+# @LastEditTime : 2020-08-10 14:58:13
+# @FilePath     : /add-contributors/main.py
+# @Description  : Main script of Github Action
+# @Copyright 2020 BobAnkh
+
 import base64
 import os
 import re
-import sys
 
 from github import Github
 
@@ -127,15 +126,15 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
     base = contents.content
     base = base.replace('\n', '')
     text = base64.b64decode(base).decode('utf-8')
-    str = text.split(CONTRIB)
-    if re.match(head, str[1]):
-        end = str[1].split(tail)
+    text_str = text.split(CONTRIB)
+    if re.match(head, text_str[1]):
+        end = text_str[1].split(tail)
         end[0] = end[0] + tail
     else:
-        end = ['', '\n\n' + str[1]]
+        end = ['', '\n\n' + text_str[1]]
     if end[0] != contributors_list:
         end[0] = contributors_list
-        text = str[0] + CONTRIB + end[0] + end[1]
+        text = text_str[0] + CONTRIB + end[0] + end[1]
         repo.update_file(contents.path, commit_message, text, contents.sha)
     else:
         pass
