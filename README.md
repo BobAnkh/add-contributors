@@ -45,17 +45,17 @@ jobs:
 
 ### Parameters
 
-| Parameter | Description | Required | Default |
-| --- | --- | --- | --- |
-| REPO_NAME| Repository name | yes | - |
-| CONTRIBUTOR | Where you want to add contributors list | no | `### Contributors`|
-| COLUMN_PER_ROW | Number of contributors per row | no | `6` |
-| ACCESS_TOKEN | Github Access Token | yes | You can just pass `${{secrets.GITHUB_TOKEN}}` |
-| IMG_WIDTH | Width of img | no | `100` |
-| FONT_SIZE | Font size of name (px) | no | `14` |
-| PATH | Path to the file you want to add contributors' list | no | `/README.md` |
-| COMMIT_MESSAGE | commit message | no | `docs(README): update contributors` |
-| AVATAR_SHAPE | Set `round` for round avatar and `square` for square avatar | no | square |
+| Parameter      | Description                                                 | Required | Default                                       |
+| -------------- | ----------------------------------------------------------- | -------- | --------------------------------------------- |
+| REPO_NAME      | Repository name                                             | yes      | -                                             |
+| CONTRIBUTOR    | Where you want to add contributors list                     | no       | `### Contributors`                            |
+| COLUMN_PER_ROW | Number of contributors per row                              | no       | `6`                                           |
+| ACCESS_TOKEN   | Github Access Token                                         | yes      | You can just pass `${{secrets.GITHUB_TOKEN}}` |
+| IMG_WIDTH      | Width of img                                                | no       | `100`                                         |
+| FONT_SIZE      | Font size of name (px)                                      | no       | `14`                                          |
+| PATH           | Path to the file you want to add contributors' list         | no       | `/README.md`                                  |
+| COMMIT_MESSAGE | commit message                                              | no       | `docs(README): update contributors`           |
+| AVATAR_SHAPE   | Set `round` for round avatar and `square` for square avatar | no       | square                                        |
 
 > NOTE: You should leave a blank line after the `CONTRIBUTOR` line for the first time
 >
