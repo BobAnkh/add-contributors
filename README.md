@@ -1,8 +1,9 @@
 # add-contributors
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b8d0af034c5c4699805c6aca898787e7)](https://app.codacy.com/manual/bobankhshen/add-contributors?utm_source=github.com&utm_medium=referral&utm_content=BobAnkh/add-contributors&utm_campaign=Badge_Grade_Dashboard)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/BobAnkh/add-contributors?color=orange&logo=github-actions)
 ![language-python](https://img.shields.io/github/languages/top/BobAnkh/add-contributors?logo=python&logoColor=yellow)
 ![LICENSE Apache-2.0](https://img.shields.io/github/license/BobAnkh/add-contributors?logo=apache)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/BobAnkh/add-contributors?color=orange&logo=github-actions)
 
 A Github Action to add contributors to your markdown file(i.e. README.md) automatically on schedule or triggered by events
 
