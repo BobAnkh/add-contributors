@@ -150,6 +150,7 @@ def main():
     PATH = get_inputs('PATH')
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
     AVATAR_SHAPE = get_inputs('AVATAR_SHAPE')
+    DEBUG_MODE = get_inputs('DEBUG_MODE')
     repo = github_login(ACCESS_TOKEN, REPO_NAME)
     CONTRIBUTORS_LIST = generate_contributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
                                               FONT_SIZE, head, tail,

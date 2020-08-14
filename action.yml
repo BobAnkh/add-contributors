@@ -39,6 +39,10 @@ inputs:
     description: "Set `round` for round avatar and `square` for square avatar"
     required: false
     default: 'square'
+  DEBUG_MODE:
+    description: "If it is set to TRUE, then more message should be printed to the screen."
+    required: false
+    default: 'false'
 runs:
   using: "docker"
   image: "Dockerfile"
