@@ -111,7 +111,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
     return HEAD
 
 
-def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
+def write_contributors(repo, contributors_list, path, commit_message, CONTRIB, DEBUG_MODE):
     '''
     Write contributors list to file if it differs
 
@@ -161,7 +161,7 @@ def main():
                                               FONT_SIZE, head, tail,
                                               AVATAR_SHAPE)
     write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE,
-                       CONTRIBUTOR)
+                       CONTRIBUTOR, DEBUG_MODE)
 
 
 if __name__ == '__main__':
