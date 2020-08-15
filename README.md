@@ -57,7 +57,7 @@ jobs:
 | PATH           | Path to the file you want to add contributors' list         | no       | `/README.md`                                  |
 | COMMIT_MESSAGE | commit message                                              | no       | `docs(README): update contributors`           |
 | AVATAR_SHAPE   | Set `round` for round avatar and `square` for square avatar | no       | square                                        |
-| DEBUG_MODE     | If set TRUE, then more logs are be printed to the screen.    | no      | false                                         |
+| DEBUG_MODE     | If set TRUE, then more logs are be printed to the screen.   | no       | false                                         |
 
 > NOTE: You should leave a blank line after the `CONTRIBUTOR` line for the first time
 >
