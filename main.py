@@ -127,17 +127,22 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
     base = base.replace('\n', '')
     text = base64.b64decode(base).decode('utf-8')
     text_str = text.split(CONTRIB)
-    if re.match(head, text_str[1]):
-        end = text_str[1].split(tail)
-        end[0] = end[0] + tail
-    else:
-        end = ['', '\n\n' + text_str[1]]
-    if end[0] != contributors_list:
-        end[0] = contributors_list
-        text = text_str[0] + CONTRIB + end[0] + end[1]
-        repo.update_file(contents.path, commit_message, text, contents.sha)
-    else:
-        pass
+    try:
+        if re.match(head, text_str[1]):
+            end = text_str[1].split(tail)
+            end[0] = end[0] + tail
+        else:
+            end = ['', '\n\n' + text_str[1]]
+        if end[0] != contributors_list:
+            end[0] = contributors_list
+            text = text_str[0] + CONTRIB + end[0] + end[1]
+            repo.update_file(contents.path, commit_message, text, contents.sha)
+        else:
+            pass
+    except IndexError:
+        raise Exception("The file where contributors are trying to be written '" + path + "' does not have '" + CONTRIB +"' section")
+    except(RuntimeError, TypeError, NameError):
+        raise Exception(NameError)
 
 
 def main():
