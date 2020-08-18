@@ -13,6 +13,7 @@
 import base64
 import os
 import re
+import logging
 
 from github import Github
 
@@ -121,27 +122,48 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB, D
         path (string): the file to write
         commit_message (string): commit message
         CONTRIB (string): where you want to write the contributors list
+        DEBUG_MODE(string): activates debug mode.
     '''
+    if DEBUG_MODE=='true':
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.WARNING)
     contents = repo.get_contents(path)
+    logging.debug('contents = "' + repo.get_contents(path) + '"')    
     base = contents.content
+    logging.debug('base = "' + contents.content + '"')    
     base = base.replace('\n', '')
+    logging.debug('base = "' + base + '"')    
     text = base64.b64decode(base).decode('utf-8')
+    logging.debug('text = "' + text + '"')    
     text_str = text.split(CONTRIB)
+    logging.debug('text_str = "' + text_str + '"')    
     try:
+        logging.debug('if re.match(' + head + ',' + text_str[1] + ')' )
         if re.match(head, text_str[1]):
+            logging.debug('if')
             end = text_str[1].split(tail)
+            logging.debug('end = ' + end)
             end[0] = end[0] + tail
+            logging.debug('end[0] = ' + end0)
         else:
+            logging.debug('else')
             end = ['', '\n\n' + text_str[1]]
+            logging.debug('end = ' + end)        
         if end[0] != contributors_list:
             end[0] = contributors_list
+            logging.debug('end[0] = ' + end0)
             text = text_str[0] + CONTRIB + end[0] + end[1]
+            logging.debug('text = ' + text)
             repo.update_file(contents.path, commit_message, text, contents.sha)
+            logging.debug('repo.update_file(' + contents.path+','+commit_message+','+text+','+contents.sha+')')
         else:
             pass
     except IndexError:
+        logging.debug("IndexError, The file where contributors are trying to be written '" + path + "' does not have '" + CONTRIB +"' section")
         raise Exception("The file where contributors are trying to be written '" + path + "' does not have '" + CONTRIB +"' section")
     except(RuntimeError, TypeError, NameError):
+        logging.debug("RuntimeError: " + RuntimeError +", TypeError"+ TypeError +", NameError"+ NameError)
         raise Exception(NameError)
 
 
