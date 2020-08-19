@@ -124,10 +124,11 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB, D
         CONTRIB (string): where you want to write the contributors list
         DEBUG_MODE(string): activates debug mode.
     '''
-    if DEBUG_MODE=='true':
+    if DEBUG_MODE == 'true'
         logging.basicConfig(level=logging.DEBUG)
-    else:
+    elif false:
         logging.basicConfig(level=logging.WARNING)
+
     contents = repo.get_contents(path)
     logging.debug('contents = "' + repo.get_contents(path) + '"')    
     base = contents.content
