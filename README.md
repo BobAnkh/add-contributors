@@ -85,9 +85,9 @@ See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for contributing conventions
     </td>
     <td align="center">
         <a href=https://github.com/eddy-dot>
-            <img src=https://avatars0.githubusercontent.com/u/59180333?v=4 width="100;" style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;" alt=eddy-dot/>
+            <img src=https://avatars0.githubusercontent.com/u/59180333?v=4 width="100;" style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;" alt=Eddy Dot/>
             <br />
-            <sub style="font-size:14px"><b>eddy-dot</b></sub>
+            <sub style="font-size:14px"><b>Eddy Dot</b></sub>
         </a>
     </td>
 </tr>
