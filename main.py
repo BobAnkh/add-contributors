@@ -4,8 +4,8 @@
 # @Author       : BobAnkh
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
-# @LastEditors  : BobAnkh
-# @LastEditTime : 2020-08-10 14:58:13
+# @LastEditors  : Please set LastEditors
+# @LastEditTime : 2020-12-06 13:20:23
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -14,7 +14,7 @@ import base64
 import os
 import re
 
-from github import Github
+import github
 
 head = '''<table>
 <tr>'''
@@ -38,7 +38,7 @@ def github_login(ACCESS_TOKEN, REPO_NAME):
     ----------
     [1]https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository
     '''
-    g = Github(ACCESS_TOKEN)
+    g = github.Github(ACCESS_TOKEN)
     repo = g.get_repo(REPO_NAME)
     return repo
 
@@ -111,7 +111,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
     return HEAD
 
 
-def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
+def write_contributors(repo, contributors_list, path, commit_message, CONTRIB, BRANCH=github.GithubObject.NotSet):
     '''
     Write contributors list to file if it differs
 
@@ -122,7 +122,7 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
         commit_message (string): commit message
         CONTRIB (string): where you want to write the contributors list
     '''
-    contents = repo.get_contents(path)
+    contents = repo.get_contents(path, BRANCH)
     base = contents.content
     base = base.replace('\n', '')
     text = base64.b64decode(base).decode('utf-8')
@@ -136,7 +136,7 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB):
         if end[0] != contributors_list:
             end[0] = contributors_list
             text = text_str[0] + CONTRIB + end[0] + end[1]
-            repo.update_file(contents.path, commit_message, text, contents.sha)
+            repo.update_file(contents.path, commit_message, text, contents.sha, BRANCH)
         else:
             pass
     except IndexError:
@@ -153,6 +153,11 @@ def main():
     IMG_WIDTH = int(get_inputs('IMG_WIDTH'))
     FONT_SIZE = int(get_inputs('FONT_SIZE'))
     PATH = get_inputs('PATH')
+    if re.match(r'.*:.*', PATH):
+        BRANCH = re.sub(r':.*', '', PATH)
+        PATH = re.sub(r'.*:', '', PATH)
+    else:
+        BRANCH = github.GithubObject.NotSet
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
     AVATAR_SHAPE = get_inputs('AVATAR_SHAPE')
     repo = github_login(ACCESS_TOKEN, REPO_NAME)
@@ -160,7 +165,7 @@ def main():
                                               FONT_SIZE, head, tail,
                                               AVATAR_SHAPE)
     write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE,
-                       CONTRIBUTOR)
+                       CONTRIBUTOR, BRANCH)
 
 
 if __name__ == '__main__':
