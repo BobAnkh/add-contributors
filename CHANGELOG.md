@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [v0.0.7](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.7) - 2020-12-06 05:28:10
+
+Support other branches.
+
+You can use format like `<branch>:<file>` in input `PATH`, e.g. `dev:/README.md`, to specify the branch of your file.
+
+### Bug Fixes
+
+- branch:
+  - support other branches ([259b7be](https://github.com/BobAnkh/add-contributors/commit/259b7be4bac24805894e343bb58595a6d0bfba80)) ([#32](https://github.com/BobAnkh/add-contributors/pull/32))
+
+### Documentation
+
+- CONTRIBUTING:
+  - update style guide ([10dd8c7](https://github.com/BobAnkh/add-contributors/commit/10dd8c7c6d6b2504da3b973487236659827a7968))
+
 ## [v0.0.6](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.6) - 2020-10-20 05:35:37
 
 Add more ErrorLog to output, making it more easier to debug
@@ -25,7 +41,7 @@ See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELO
 ### Bug Fixes
 
 - dockerfile:
-  - use chmod to deal with ... ([1082568](https://github.com/BobAnkh/add-contributors/commit/10825686580c7fc9c4ad5206546b29197dcb684a))
+  - use chmod to deal with   execution permission issue ([1082568](https://github.com/BobAnkh/add-contributors/commit/10825686580c7fc9c4ad5206546b29197dcb684a))
 
 ### Documentation
 
@@ -69,14 +85,14 @@ See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELO
 
 ### Documentation
 
-- README:
-  - update introduction and contributing ([2eeb56c](https://github.com/BobAnkh/add-contributors/commit/2eeb56cf080102e25f3c9ee527901c3c49c0b098))
-
 - usage:
   - update parameters and example ([2a1515a](https://github.com/BobAnkh/add-contributors/commit/2a1515a6ead2f2cd0bb8318e98135d6c2e5faf0a)) ([#3](https://github.com/BobAnkh/add-contributors/pull/3))
 
 - *:
   - add CONTRIBUTING.md ([bd43b70](https://github.com/BobAnkh/add-contributors/commit/bd43b70b6749d162ed0ccfec8b547eb1184600b2))
+
+- README:
+  - update introduction and contributing ([2eeb56c](https://github.com/BobAnkh/add-contributors/commit/2eeb56cf080102e25f3c9ee527901c3c49c0b098))
 
 ## [v0.0.2](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.2) - 2020-07-27 01:58:37
 
@@ -84,16 +100,13 @@ v0.0.2
 
 ### Feature
 
-- entrypoint:
-  - add main script to be excuted ([fdd630e](https://github.com/BobAnkh/add-contributors/commit/fdd630e85b7ebac74587c65e3be476ff963122f9))
-
 - docker:
   - use entrypoint.sh ([ae5fa78](https://github.com/BobAnkh/add-contributors/commit/ae5fa78b6f261bc7e749b5aa6de39b1e6800cbc0))
 
-### Bug Fixes
-
 - entrypoint:
-  - correct permission to be excuted ([72cf66c](https://github.com/BobAnkh/add-contributors/commit/72cf66c534174f6f9dd5a268f19044c8274e0c6d))
+  - add main script to be excuted ([fdd630e](https://github.com/BobAnkh/add-contributors/commit/fdd630e85b7ebac74587c65e3be476ff963122f9))
+
+### Bug Fixes
 
 - main:
   - fix the format for first time ([4cb8252](https://github.com/BobAnkh/add-contributors/commit/4cb8252210addd677b7c6ca30a8b683b36a7b554))
@@ -103,6 +116,9 @@ v0.0.2
 
 - token:
   - change token-required to be true ([e91599c](https://github.com/BobAnkh/add-contributors/commit/e91599cc099f4da32fbd95fd5ce58249502e69fe))
+
+- entrypoint:
+  - correct permission to be excuted ([72cf66c](https://github.com/BobAnkh/add-contributors/commit/72cf66c534174f6f9dd5a268f19044c8274e0c6d))
 
 - action:
   - fix secrets typo ([ccc0500](https://github.com/BobAnkh/add-contributors/commit/ccc05002f06f01a61e2a78df7d33b74864ed50f0))
