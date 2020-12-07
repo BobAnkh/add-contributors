@@ -5,7 +5,7 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2020-12-06 13:20:23
+# @LastEditTime : 2020-12-07 10:31:41
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -127,28 +127,31 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB, B
     base = base.replace('\n', '')
     text = base64.b64decode(base).decode('utf-8')
     text_str = text.split(CONTRIB)
-    try:
-        if re.match(head, text_str[1]):
-            end = text_str[1].split(tail)
-            end[0] = end[0] + tail
-        else:
-            end = ['', '\n\n' + text_str[1]]
-        if end[0] != contributors_list:
-            end[0] = contributors_list
-            text = text_str[0] + CONTRIB + end[0] + end[1]
-            repo.update_file(contents.path, commit_message, text, contents.sha, BRANCH)
-        else:
-            pass
-    except IndexError:
-        raise Exception("The file where contributors are trying to be written '" + path + "' does not have '" + CONTRIB +"' section")
-    except(RuntimeError, TypeError, NameError):
-        raise Exception(NameError)
-
+    if len(text_str) == 1:
+        print('[DEBUG]: ', text, '\n[DEBUG]')
+        raise Exception("File '" + path + "' does not have '" + CONTRIB +"' section")
+    if re.match(r'\n+', text_str[1]):
+        lf_num = re.match(r'\n+', text_str[1]).span()[1]
+        text_str[1] = text_str[1][lf_num:]
+    else:
+        lf_num = 0
+        print('[DEBUG-lr_num]: ', text_str[1])
+    if re.match(head, text_str[1]):
+        end = text_str[1].split(tail)
+        end[0] = end[0] + tail
+    else:
+        end = ['', '\n' * (lf_num + 1) + text_str[1]]
+    if end[0] != contributors_list:
+        end[0] = contributors_list
+        text = text_str[0] + CONTRIB + '\n' + end[0] + end[1]
+        repo.update_file(contents.path, commit_message, text, contents.sha, BRANCH)
+    else:
+        pass
 
 def main():
     ACCESS_TOKEN = get_inputs('ACCESS_TOKEN')
     REPO_NAME = get_inputs('REPO_NAME')
-    CONTRIBUTOR = get_inputs('CONTRIBUTOR') + '\n\n'
+    CONTRIBUTOR = get_inputs('CONTRIBUTOR') + '\n'
     COLUMN_PER_ROW = int(get_inputs('COLUMN_PER_ROW'))
     IMG_WIDTH = int(get_inputs('IMG_WIDTH'))
     FONT_SIZE = int(get_inputs('FONT_SIZE'))
