@@ -96,7 +96,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
             HEAD = HEAD + new_tr
             USER = 0
         if shape == 'round':
-            img_style = ' style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top: 10px"'
+            img_style = ' style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px"'
         else:
             img_style = ''
         td = f'''
