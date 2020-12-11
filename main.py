@@ -80,6 +80,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
     USER = 0
     HEAD = head_format
     TAIL = tail_format
+    cell_width = 1.25 * img_width
     contributors = repo.get_contributors()
     for contributor in contributors:
         name = contributor.name
@@ -98,11 +99,11 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
         else:
             img_style = ''
         td = f'''
-    <td align="center">
+    <td align="center" style="word-wrap: break-word; width: {cell_width}; color: green">
         <a href={html_url}>
             <img src={avatar_url} width="{img_width};"{img_style} alt={name}/>
             <br />
-            <a style="font-size:{font_size}px; word-wrap: break-word; width: {img_width}; color: green"><b>{name}</b></a>
+            <sub style="font-size:{font_size}px"><b>{name}</b></sub>
             <br />
         </a>
     </td>'''
