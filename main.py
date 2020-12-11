@@ -102,7 +102,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
         <a href={html_url}>
             <img src={avatar_url} width="{img_width};"{img_style} alt={name}/>
             <br />
-            <sub style="font-size:{font_size}px; word-wrap: break-word; width: {img_width}"><b>{name}</b></sub>
+            <a style="font-size:{font_size}px; word-wrap: break-word; width: {img_width}; color: green"><b>{name}</b></a>
             <br />
         </a>
     </td>'''
