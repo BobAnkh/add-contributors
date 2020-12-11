@@ -105,6 +105,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
             <img src={avatar_url} width="{img_width};"{img_style} alt={name}/>
             <br />
             <sub style="font-size:{font_size}px"><b>{name}</b></sub>
+            <sub></sub>
             <br />
         </a>
     </td>'''
