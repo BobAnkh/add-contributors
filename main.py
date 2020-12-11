@@ -80,7 +80,7 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
     USER = 0
     HEAD = head_format
     TAIL = tail_format
-    cell_width = 1.25 * img_width
+    cell_width = 1.5 * img_width
     cell_height = 1.5 * img_width
     contributors = repo.get_contributors()
     for contributor in contributors:
