@@ -80,6 +80,8 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
     USER = 0
     HEAD = head_format
     TAIL = tail_format
+    cell_width = 1.5 * img_width
+    cell_height = 1.5 * img_width
     contributors = repo.get_contributors()
     for contributor in contributors:
         name = contributor.name
@@ -94,13 +96,13 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
             HEAD = HEAD + new_tr
             USER = 0
         if shape == 'round':
-            img_style = ' style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;"'
+            img_style = ' style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px"'
         else:
             img_style = ''
         td = f'''
-    <td align="center">
+    <td align="center" style="word-wrap: break-word; width: {cell_width}; height: {cell_height}">
         <a href={html_url}>
-            <img src={avatar_url} width="{img_width};"{img_style} alt={name}/>
+            <img src={avatar_url} width="{img_width};" {img_style} alt={name}/>
             <br />
             <sub style="font-size:{font_size}px"><b>{name}</b></sub>
         </a>
