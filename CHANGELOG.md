@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## [v0.0.8](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.8) - 2020-12-12 00:47:26
+
+Change layout of contributors table to make it more beautiful.
+
+### Feature
+
+- table-style:
+  - change layout of contributors table (#34) ([54e695f](https://github.com/BobAnkh/add-contributors/commit/54e695f9222907293a2d42c98937678763518ce4)) ([#34](https://github.com/BobAnkh/add-contributors/pull/34))
+
+### Bug Fixes
+
+- locate:
+  - change locate feature ([ef71274](https://github.com/BobAnkh/add-contributors/commit/ef71274049fccc95376b272ca95cacb32eaed9b8))
+
+### Documentation
+
+- README:
+  - update contributors ([f229687](https://github.com/BobAnkh/add-contributors/commit/f2296872426a5a36168cdf73691035a3da5df4f1))
+
 ## [v0.0.7](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.7) - 2020-12-06 05:28:10
 
 Support other branches.
@@ -45,17 +64,17 @@ See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELO
 
 ### Documentation
 
-- CONTRIBUTING:
-  - update format ([000568d](https://github.com/BobAnkh/add-contributors/commit/000568dc0ced4809688d82b64648347618f890a1))
-  - refactor to have styleguide ([4a472af](https://github.com/BobAnkh/add-contributors/commit/4a472afecff5695701245579a17f60731fa8cccc))
+- README:
+  - add new badge - add code quality from codacy ([92ff165](https://github.com/BobAnkh/add-contributors/commit/92ff16504cd29a43fa5b65817ec1e41fd145a066))
+  - update table format ([82edd07](https://github.com/BobAnkh/add-contributors/commit/82edd072da7bf65810fdf7ef77f482106acc2bb8))
 
 - CONTRIBUTING.md:
   - change a word ([d285f3d](https://github.com/BobAnkh/add-contributors/commit/d285f3d387f52d051f6b3e9a3041a6310ab9b5d1))
   - fix a typo ([efe4f7a](https://github.com/BobAnkh/add-contributors/commit/efe4f7af7793b1031e58883e2f90331c6fada4da))
 
-- README:
-  - add new badge - add code quality from codacy ([92ff165](https://github.com/BobAnkh/add-contributors/commit/92ff16504cd29a43fa5b65817ec1e41fd145a066))
-  - update table format ([82edd07](https://github.com/BobAnkh/add-contributors/commit/82edd072da7bf65810fdf7ef77f482106acc2bb8))
+- CONTRIBUTING:
+  - update format ([000568d](https://github.com/BobAnkh/add-contributors/commit/000568dc0ced4809688d82b64648347618f890a1))
+  - refactor to have styleguide ([4a472af](https://github.com/BobAnkh/add-contributors/commit/4a472afecff5695701245579a17f60731fa8cccc))
 
 ## [v0.0.4](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.4) - 2020-07-30 02:53:51
 
@@ -85,14 +104,14 @@ See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELO
 
 ### Documentation
 
-- usage:
-  - update parameters and example ([2a1515a](https://github.com/BobAnkh/add-contributors/commit/2a1515a6ead2f2cd0bb8318e98135d6c2e5faf0a)) ([#3](https://github.com/BobAnkh/add-contributors/pull/3))
-
 - *:
   - add CONTRIBUTING.md ([bd43b70](https://github.com/BobAnkh/add-contributors/commit/bd43b70b6749d162ed0ccfec8b547eb1184600b2))
 
 - README:
   - update introduction and contributing ([2eeb56c](https://github.com/BobAnkh/add-contributors/commit/2eeb56cf080102e25f3c9ee527901c3c49c0b098))
+
+- usage:
+  - update parameters and example ([2a1515a](https://github.com/BobAnkh/add-contributors/commit/2a1515a6ead2f2cd0bb8318e98135d6c2e5faf0a)) ([#3](https://github.com/BobAnkh/add-contributors/pull/3))
 
 ## [v0.0.2](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.2) - 2020-07-27 01:58:37
 
@@ -108,17 +127,17 @@ v0.0.2
 
 ### Bug Fixes
 
-- main:
-  - fix the format for first time ([4cb8252](https://github.com/BobAnkh/add-contributors/commit/4cb8252210addd677b7c6ca30a8b683b36a7b554))
-  - fix the format for first time ([ad55b4b](https://github.com/BobAnkh/add-contributors/commit/ad55b4b73ce4e569f9499c98ece268d76327f3de))
-  - fix a typo ([935c6c2](https://github.com/BobAnkh/add-contributors/commit/935c6c24f8cec43c2dd66764dd13e0b474c8add1))
-  - correct permission to be excuted ([069bee7](https://github.com/BobAnkh/add-contributors/commit/069bee752cb61ef83958b5ffa628e8137324915a))
-
 - token:
   - change token-required to be true ([e91599c](https://github.com/BobAnkh/add-contributors/commit/e91599cc099f4da32fbd95fd5ce58249502e69fe))
 
 - entrypoint:
   - correct permission to be excuted ([72cf66c](https://github.com/BobAnkh/add-contributors/commit/72cf66c534174f6f9dd5a268f19044c8274e0c6d))
+
+- main:
+  - fix the format for first time ([4cb8252](https://github.com/BobAnkh/add-contributors/commit/4cb8252210addd677b7c6ca30a8b683b36a7b554))
+  - fix the format for first time ([ad55b4b](https://github.com/BobAnkh/add-contributors/commit/ad55b4b73ce4e569f9499c98ece268d76327f3de))
+  - fix a typo ([935c6c2](https://github.com/BobAnkh/add-contributors/commit/935c6c24f8cec43c2dd66764dd13e0b474c8add1))
+  - correct permission to be excuted ([069bee7](https://github.com/BobAnkh/add-contributors/commit/069bee752cb61ef83958b5ffa628e8137324915a))
 
 - action:
   - fix secrets typo ([ccc0500](https://github.com/BobAnkh/add-contributors/commit/ccc05002f06f01a61e2a78df7d33b74864ed50f0))
