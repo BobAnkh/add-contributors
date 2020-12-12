@@ -78,11 +78,18 @@ See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for contributing conventions
 
 <table>
 <tr>
-    <td align="center">
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
         <a href=https://github.com/BobAnkh>
-            <img src=https://avatars2.githubusercontent.com/u/44333669?v=4 width="100;" style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;" alt=BobAnkh/>
+            <img src=https://avatars2.githubusercontent.com/u/44333669?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=BobAnkh/>
             <br />
             <sub style="font-size:14px"><b>BobAnkh</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/baileythegreen>
+            <img src=https://avatars0.githubusercontent.com/u/12277715?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Bailey Harrington/>
+            <br />
+            <sub style="font-size:14px"><b>Bailey Harrington</b></sub>
         </a>
     </td>
 </tr>
