@@ -60,7 +60,7 @@ jobs:
 
 > NOTE: You should leave a blank line after the `CONTRIBUTOR` line for the first time
 >
-> NOTE: You can use <branch>:<file> format to specify the branch where your file is located. e.g. 'dev:/README.md'
+> NOTE: You can use `<branch>:<file>` format to specify the branch where your file is located. e.g. 'dev:/README.md'
 >
 > NOTE: Github seems not support image style in markdown file rendering yet
 
