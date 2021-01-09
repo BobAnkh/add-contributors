@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## [v0.1.0](https://github.com/BobAnkh/add-contributors/releases/tag/v0.1.0) - 2021-01-09 04:21:08
+
+Refactor the data structure. No breaking changes. Prepare to add some tests
+
+Add local mode for developing on local machine.
+
+### Feature
+
+- mode:
+  - add local-dev mode ([c4e8115](https://github.com/BobAnkh/add-contributors/commit/c4e8115850f4148323689371463396d8dd6e272a)) ([#36](https://github.com/BobAnkh/add-contributors/pull/36))
+
+### Documentation
+
+- README:
+  - update info for local mode ([3f02f72](https://github.com/BobAnkh/add-contributors/commit/3f02f720122e6f9015e5cdaeaea8beac18cef2e4))
+  - fix a typo ([90eedc1](https://github.com/BobAnkh/add-contributors/commit/90eedc1d8dae57ef168856d08ccf9758b23bbef2))
+
+### Refactor
+
+- main:
+  - uncouple data and api to github ([27b5e5b](https://github.com/BobAnkh/add-contributors/commit/27b5e5b55a0b8134a4ebc2073b3267f06154a08c))
+
+### Performance Improvements
+
+- main:
+  - use yaml.safe_load and add docstring ([44553f6](https://github.com/BobAnkh/add-contributors/commit/44553f6d59769836061740bebdecd422493bbd5e))
+
+- data:
+  - imporve data structure ([7098489](https://github.com/BobAnkh/add-contributors/commit/7098489d03873c0235edf349b24679f33400cc03))
+
 ## [v0.0.8](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.8) - 2020-12-12 00:47:26
 
 Change layout of contributors table to make it more beautiful.
@@ -64,13 +94,13 @@ See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELO
 
 ### Documentation
 
-- README:
-  - add new badge - add code quality from codacy ([92ff165](https://github.com/BobAnkh/add-contributors/commit/92ff16504cd29a43fa5b65817ec1e41fd145a066))
-  - update table format ([82edd07](https://github.com/BobAnkh/add-contributors/commit/82edd072da7bf65810fdf7ef77f482106acc2bb8))
-
 - CONTRIBUTING.md:
   - change a word ([d285f3d](https://github.com/BobAnkh/add-contributors/commit/d285f3d387f52d051f6b3e9a3041a6310ab9b5d1))
   - fix a typo ([efe4f7a](https://github.com/BobAnkh/add-contributors/commit/efe4f7af7793b1031e58883e2f90331c6fada4da))
+
+- README:
+  - add new badge - add code quality from codacy ([92ff165](https://github.com/BobAnkh/add-contributors/commit/92ff16504cd29a43fa5b65817ec1e41fd145a066))
+  - update table format ([82edd07](https://github.com/BobAnkh/add-contributors/commit/82edd072da7bf65810fdf7ef77f482106acc2bb8))
 
 - CONTRIBUTING:
   - update format ([000568d](https://github.com/BobAnkh/add-contributors/commit/000568dc0ced4809688d82b64648347618f890a1))
@@ -119,19 +149,16 @@ v0.0.2
 
 ### Feature
 
-- docker:
-  - use entrypoint.sh ([ae5fa78](https://github.com/BobAnkh/add-contributors/commit/ae5fa78b6f261bc7e749b5aa6de39b1e6800cbc0))
-
 - entrypoint:
   - add main script to be excuted ([fdd630e](https://github.com/BobAnkh/add-contributors/commit/fdd630e85b7ebac74587c65e3be476ff963122f9))
 
+- docker:
+  - use entrypoint.sh ([ae5fa78](https://github.com/BobAnkh/add-contributors/commit/ae5fa78b6f261bc7e749b5aa6de39b1e6800cbc0))
+
 ### Bug Fixes
 
-- token:
-  - change token-required to be true ([e91599c](https://github.com/BobAnkh/add-contributors/commit/e91599cc099f4da32fbd95fd5ce58249502e69fe))
-
-- entrypoint:
-  - correct permission to be excuted ([72cf66c](https://github.com/BobAnkh/add-contributors/commit/72cf66c534174f6f9dd5a268f19044c8274e0c6d))
+- action:
+  - fix secrets typo ([ccc0500](https://github.com/BobAnkh/add-contributors/commit/ccc05002f06f01a61e2a78df7d33b74864ed50f0))
 
 - main:
   - fix the format for first time ([4cb8252](https://github.com/BobAnkh/add-contributors/commit/4cb8252210addd677b7c6ca30a8b683b36a7b554))
@@ -139,8 +166,11 @@ v0.0.2
   - fix a typo ([935c6c2](https://github.com/BobAnkh/add-contributors/commit/935c6c24f8cec43c2dd66764dd13e0b474c8add1))
   - correct permission to be excuted ([069bee7](https://github.com/BobAnkh/add-contributors/commit/069bee752cb61ef83958b5ffa628e8137324915a))
 
-- action:
-  - fix secrets typo ([ccc0500](https://github.com/BobAnkh/add-contributors/commit/ccc05002f06f01a61e2a78df7d33b74864ed50f0))
+- entrypoint:
+  - correct permission to be excuted ([72cf66c](https://github.com/BobAnkh/add-contributors/commit/72cf66c534174f6f9dd5a268f19044c8274e0c6d))
+
+- token:
+  - change token-required to be true ([e91599c](https://github.com/BobAnkh/add-contributors/commit/e91599cc099f4da32fbd95fd5ce58249502e69fe))
 
 ### Documentation
 
