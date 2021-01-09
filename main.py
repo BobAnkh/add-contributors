@@ -5,7 +5,7 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2021-01-09 11:47:42
+# @LastEditTime : 2021-01-09 12:09:20
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -52,37 +52,19 @@ class GithubContributors:
     Object for data interface of Github
     '''
     def __init__(self, ACCESS_TOKEN, REPO_NAME, PATH, BRANCH, COMMIT_MESSAGE):
-        self.repo = None
-        self.ACCESS_TOKEN = ACCESS_TOKEN
-        self.REPO_NAME = REPO_NAME
         self.COMMIT_MESSAGE = COMMIT_MESSAGE
         self.PATH = PATH
         self.BRANCH = BRANCH
         self.SHA = ''
         self.contributors_data = []
         self.file_content = ''
-
-    def __github_login(self, ACCESS_TOKEN, REPO_NAME):
-        '''
-        Use PyGithub to login to the repository
-
-        Args:
-            ACCESS_TOKEN (str): github Access Token
-            REPO_NAME (str): repository name
-
-        Returns:
-            github.Repository.Repository: object represents the repo
-
-        References:
-        ----------
-        [1]https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository
-        '''
+        
+        # Use PyGithub to login to the repository
+        # References: https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository
         g = github.Github(ACCESS_TOKEN)
-        repo = g.get_repo(REPO_NAME)
-        return repo
+        self.repo = g.get_repo(REPO_NAME)
 
     def get_data(self):
-        self.repo = self.__github_login(self.ACCESS_TOKEN, self.REPO_NAME)
         # get contributors data
         contributors = self.repo.get_contributors()
         for contributor in contributors:
