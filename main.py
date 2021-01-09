@@ -5,14 +5,16 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2020-12-07 10:31:41
+# @LastEditTime : 2021-01-09 09:03:50
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
 
+import argparse
 import base64
 import os
 import re
+import yaml
 
 import github
 
@@ -41,6 +43,17 @@ def github_login(ACCESS_TOKEN, REPO_NAME):
     g = github.Github(ACCESS_TOKEN)
     repo = g.get_repo(REPO_NAME)
     return repo
+
+
+def set_local_env(env_name, env_value, prefix='INPUT'):
+    '''
+    set local env for dev
+
+    Args:
+        env_name (str): local env name
+        env_value (str): value of local env name
+    '''
+    os.environ[prefix + '_{}'.format(env_name).upper()] = env_value
 
 
 def get_inputs(input_name):
@@ -150,7 +163,70 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB, B
     else:
         pass
 
+
+def argument_parser():
+    '''
+    Parse parameters conveyed from cmd
+    Returns:
+        Namespace: place where parameters from cmd store
+    '''
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-m',
+        '--mode',
+        help='choose to use local-dev mode or on github action mode. Valid values are \'local\' or \'github\'',
+        default='github')
+    parser.add_argument(
+        '-f',
+        '--file',
+        help='configuration file to read from when running local-dev mode',
+        default='.github/workflows/contributors.yml')
+    parser.add_argument(
+        '-t',
+        '--token',
+        help='Github Access Token')
+    args = parser.parse_args()
+    return args
+
+
+def set_env_from_file(file, args, prefix='INPUT'):
+    f = open(file, encoding='utf-8')
+    y = yaml.load(f, Loader=yaml.FullLoader)
+    for job in y['jobs'].values():
+        for step in job['steps']:
+            if re.match(r'BobAnkh/add-contributors', step['uses']):
+                params = step['with']
+                break
+    option_params = [
+        'REPO_NAME', 'CONTRIBUTOR', 'COLUMN_PER_ROW', 'ACCESS_TOKEN',
+        'IMG_WIDTH', 'FONT_SIZE', 'PATH', 'COMMIT_MESSAGE', 'AVATAR_SHAPE'
+    ]
+    for param in option_params:
+        if param not in params.keys():
+            if args.token:
+                tmp = args.token
+            else:
+                tmp = input('Please input the value of ' + param + ':')
+        elif param == 'ACCESS_TOKEN':
+            if re.match(r'\$\{\{secrets\.', params[param]):
+                if args.token:
+                    tmp = args.token
+                else:
+                    tmp = input('Please input the value of ' + param + ':')
+        else:
+            tmp = params[param]
+        set_local_env(param, tmp, prefix)
+
+
 def main():
+    args = argument_parser()
+    if args.mode == 'local':
+        set_env_from_file('.github/workflows/contributors.yml', args)
+    elif args.mode == 'github':
+        pass
+    else:
+        print("Illegal mode option, please type \'-h\' to read the help")
+        os.exit()
     ACCESS_TOKEN = get_inputs('ACCESS_TOKEN')
     REPO_NAME = get_inputs('REPO_NAME')
     CONTRIBUTOR = get_inputs('CONTRIBUTOR') + '\n'
