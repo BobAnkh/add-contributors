@@ -5,7 +5,7 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2021-01-09 12:09:20
+# @LastEditTime : 2021-01-09 12:19:49
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -49,16 +49,27 @@ def argument_parser():
 
 class GithubContributors:
     '''
-    Object for data interface of Github
+    Class for data interface of Github
+
+    Use it to get contributors data and file content from Github and write new file content to Github
     '''
     def __init__(self, ACCESS_TOKEN, REPO_NAME, PATH, BRANCH, COMMIT_MESSAGE):
+        '''
+        Initial GithubContributors
+
+        Args:
+            ACCESS_TOKEN (str): Personal Access Token for Github
+            REPO_NAME (str): The name of the repository
+            PATH (str): The path to the file
+            BRANCH (str): The branch of the file
+            COMMIT_MESSAGE (str): Commit message you want to use
+        '''
         self.COMMIT_MESSAGE = COMMIT_MESSAGE
         self.PATH = PATH
         self.BRANCH = BRANCH
         self.SHA = ''
         self.contributors_data = []
         self.file_content = ''
-        
         # Use PyGithub to login to the repository
         # References: https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository
         g = github.Github(ACCESS_TOKEN)
@@ -226,7 +237,7 @@ def set_env_from_file(file, args, prefix='INPUT'):
         prefix (str, optional): prefix of env. Defaults to 'INPUT'.
     '''
     f = open(file, encoding='utf-8')
-    y = yaml.load(f, Loader=yaml.FullLoader)
+    y = yaml.safe_load(f)
     for job in y['jobs'].values():
         for step in job['steps']:
             if re.match(r'BobAnkh/add-contributors', step['uses']):
