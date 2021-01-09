@@ -5,7 +5,7 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2021-01-09 09:03:50
+# @LastEditTime : 2021-01-09 11:47:42
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -14,9 +14,9 @@ import argparse
 import base64
 import os
 import re
-import yaml
 
 import github
+import yaml
 
 head = '''<table>
 <tr>'''
@@ -25,24 +25,99 @@ tail = '''
 </table>'''
 
 
-def github_login(ACCESS_TOKEN, REPO_NAME):
+def argument_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-m',
+        '--mode',
+        help=
+        'choose to use local-dev mode or on github action mode. Valid values are \'local\' or \'github\'',
+        default='github')
+    parser.add_argument(
+        '-f',
+        '--file',
+        help='configuration file to read from when running local-dev mode',
+        default='.github/workflows/contributors.yml')
+    parser.add_argument('-o',
+                        '--output',
+                        help='output file when running local-dev mode',
+                        default='local-dev.md')
+    parser.add_argument('-t', '--token', help='Github Access Token')
+    args = parser.parse_args()
+    return args
+
+
+class GithubContributors:
     '''
-    Use PyGithub to login to the repository
-
-    Args:
-        ACCESS_TOKEN (string): github Access Token
-        REPO_NAME (string): repository name
-
-    Returns:
-        github.Repository.Repository: object represents the repo
-
-    References:
-    ----------
-    [1]https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository
+    Object for data interface of Github
     '''
-    g = github.Github(ACCESS_TOKEN)
-    repo = g.get_repo(REPO_NAME)
-    return repo
+    def __init__(self, ACCESS_TOKEN, REPO_NAME, PATH, BRANCH, COMMIT_MESSAGE):
+        self.repo = None
+        self.ACCESS_TOKEN = ACCESS_TOKEN
+        self.REPO_NAME = REPO_NAME
+        self.COMMIT_MESSAGE = COMMIT_MESSAGE
+        self.PATH = PATH
+        self.BRANCH = BRANCH
+        self.SHA = ''
+        self.contributors_data = []
+        self.file_content = ''
+
+    def __github_login(self, ACCESS_TOKEN, REPO_NAME):
+        '''
+        Use PyGithub to login to the repository
+
+        Args:
+            ACCESS_TOKEN (str): github Access Token
+            REPO_NAME (str): repository name
+
+        Returns:
+            github.Repository.Repository: object represents the repo
+
+        References:
+        ----------
+        [1]https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html#github.Repository.Repository
+        '''
+        g = github.Github(ACCESS_TOKEN)
+        repo = g.get_repo(REPO_NAME)
+        return repo
+
+    def get_data(self):
+        self.repo = self.__github_login(self.ACCESS_TOKEN, self.REPO_NAME)
+        # get contributors data
+        contributors = self.repo.get_contributors()
+        for contributor in contributors:
+            name = contributor.name
+            avatar_url = contributor.avatar_url
+            html_url = contributor.html_url
+            if re.match('https://github.com/apps/', html_url):
+                continue
+            if name == None:
+                name = html_url[19:]
+            self.contributors_data.append({
+                'name': name,
+                'avatar_url': avatar_url,
+                'html_url': html_url
+            })
+        # get file content
+        contents = self.repo.get_contents(self.PATH, self.BRANCH)
+        self.PATH = contents.path
+        self.SHA = contents.sha
+        base = contents.content
+        base = base.replace('\n', '')
+        self.file_content = base64.b64decode(base).decode('utf-8')
+
+    def write_data(self, content):
+        if content == self.file_content:
+            pass
+        else:
+            self.repo.update_file(self.PATH, self.COMMIT_MESSAGE, content,
+                                  self.SHA, self.BRANCH)
+
+    def read_contributors(self):
+        return self.contributors_data
+
+    def read_file_content(self):
+        return self.file_content
 
 
 def set_local_env(env_name, env_value, prefix='INPUT'):
@@ -73,37 +148,32 @@ def get_inputs(input_name):
     return os.getenv('INPUT_{}'.format(input_name).upper())
 
 
-def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
-                          head_format, tail_format, shape):
+def generate_contributors_table(contributors_data, COLUMN_PER_ROW, img_width,
+                                font_size, head_format, tail_format, shape):
     '''
-    Generate the contributors list using a given template
+    Generate the contributors table in html format using a given template
 
     Args:
-        repo (github.Repository.Repository): object represents the repo
+        contributors_data (list): a list of dict which contains contributors' name, avatar_url and html_url
         COLUMN_PER_ROW (int): number of contributors per row
         img_width (int): width of img
         font_size (int): font size of name
-        head_format (string): html_format for table head
-        tail_format (string): html_format for table tail
-        shape (string): round for round avatar and square for square avatar
+        head_format (str): html_format for table head
+        tail_format (str): html_format for table tail
+        shape (str): round for round avatar and square for square avatar
 
     Returns:
-        string: contributors list
+        str: contributors table in html format
     '''
     USER = 0
     HEAD = head_format
     TAIL = tail_format
     cell_width = 1.5 * img_width
     cell_height = 1.5 * img_width
-    contributors = repo.get_contributors()
-    for contributor in contributors:
-        name = contributor.name
-        avatar_url = contributor.avatar_url
-        html_url = contributor.html_url
-        if re.match('https://github.com/apps/', html_url):
-            continue
-        if name == None:
-            name = html_url[19:]
+    for contributor in contributors_data:
+        name = contributor['name']
+        avatar_url = contributor['avatar_url']
+        html_url = contributor['html_url']
         if USER >= COLUMN_PER_ROW:
             new_tr = '''\n</tr>\n<tr>'''
             HEAD = HEAD + new_tr
@@ -126,25 +196,28 @@ def generate_contributors(repo, COLUMN_PER_ROW, img_width, font_size,
     return HEAD
 
 
-def write_contributors(repo, contributors_list, path, commit_message, CONTRIB, BRANCH=github.GithubObject.NotSet):
+def generate_content(file_content, contributors_table, CONTRIBUTOR, PATH):
     '''
-    Write contributors list to file if it differs
+    Generate the whole content with contributors table
 
     Args:
-        repo (github.Repository.Repository): object represents the repo
-        contributors_list (string): contributors list
-        path (string): the file to write
-        commit_message (string): commit message
-        CONTRIB (string): where you want to write the contributors list
+        file_content (str): content of target file
+        contributors_table (str): contributors list
+        CONTRIBUTOR (str): where you want to write the contributors list
+        PATH (str): the file to write
+
+    Raises:
+        Exception: the target file does not have the CONTRIBUTOR section
+
+    Returns:
+        str: the whole content with contributors table
     '''
-    contents = repo.get_contents(path, BRANCH)
-    base = contents.content
-    base = base.replace('\n', '')
-    text = base64.b64decode(base).decode('utf-8')
-    text_str = text.split(CONTRIB)
+    text = file_content
+    text_str = text.split(CONTRIBUTOR)
     if len(text_str) == 1:
         print('[DEBUG]: ', text, '\n[DEBUG]')
-        raise Exception("File '" + path + "' does not have '" + CONTRIB +"' section")
+        raise Exception("File '" + PATH + "' does not have '" + CONTRIBUTOR +
+                        "' section")
     if re.match(r'\n+', text_str[1]):
         lf_num = re.match(r'\n+', text_str[1]).span()[1]
         text_str[1] = text_str[1][lf_num:]
@@ -156,40 +229,20 @@ def write_contributors(repo, contributors_list, path, commit_message, CONTRIB, B
         end[0] = end[0] + tail
     else:
         end = ['', '\n' * (lf_num + 1) + text_str[1]]
-    if end[0] != contributors_list:
-        end[0] = contributors_list
-        text = text_str[0] + CONTRIB + '\n' + end[0] + end[1]
-        repo.update_file(contents.path, commit_message, text, contents.sha, BRANCH)
-    else:
-        pass
-
-
-def argument_parser():
-    '''
-    Parse parameters conveyed from cmd
-    Returns:
-        Namespace: place where parameters from cmd store
-    '''
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-m',
-        '--mode',
-        help='choose to use local-dev mode or on github action mode. Valid values are \'local\' or \'github\'',
-        default='github')
-    parser.add_argument(
-        '-f',
-        '--file',
-        help='configuration file to read from when running local-dev mode',
-        default='.github/workflows/contributors.yml')
-    parser.add_argument(
-        '-t',
-        '--token',
-        help='Github Access Token')
-    args = parser.parse_args()
-    return args
+    end[0] = contributors_table
+    text = text_str[0] + CONTRIBUTOR + '\n' + end[0] + end[1]
+    return text
 
 
 def set_env_from_file(file, args, prefix='INPUT'):
+    '''
+    Set env when use local-dev mode
+
+    Args:
+        file (str): path to config file
+        args (object): argument
+        prefix (str, optional): prefix of env. Defaults to 'INPUT'.
+    '''
     f = open(file, encoding='utf-8')
     y = yaml.load(f, Loader=yaml.FullLoader)
     for job in y['jobs'].values():
@@ -241,12 +294,19 @@ def main():
         BRANCH = github.GithubObject.NotSet
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
     AVATAR_SHAPE = get_inputs('AVATAR_SHAPE')
-    repo = github_login(ACCESS_TOKEN, REPO_NAME)
-    CONTRIBUTORS_LIST = generate_contributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
-                                              FONT_SIZE, head, tail,
-                                              AVATAR_SHAPE)
-    write_contributors(repo, CONTRIBUTORS_LIST, PATH, COMMIT_MESSAGE,
-                       CONTRIBUTOR, BRANCH)
+    Contributors = GithubContributors(ACCESS_TOKEN, REPO_NAME, PATH, BRANCH,
+                                      COMMIT_MESSAGE)
+    Contributors.get_data()
+    contributors_table = generate_contributors_table(
+        Contributors.read_contributors(), COLUMN_PER_ROW, IMG_WIDTH, FONT_SIZE,
+        head, tail, AVATAR_SHAPE)
+    content = generate_content(Contributors.read_file_content(),
+                               contributors_table, CONTRIBUTOR, PATH)
+    if args.mode == 'local':
+        with open(args.output, 'w', encoding='utf-8') as f:
+            f.write(content)
+    else:
+        Contributors.write_data(content)
 
 
 if __name__ == '__main__':
