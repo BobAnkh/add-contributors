@@ -74,6 +74,23 @@ You should follow our [Code of Conduct](/CODE_OF_CONDUCT.md)
 
 See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for contributing conventions
 
+You can use local mode when develope it on your local machine, here is the command-line help info:
+
+```console
+usage: main.py [-h] [-m MODE] [-f FILE] [-o OUTPUT] [-t TOKEN]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -m MODE, --mode MODE  choose to use local-dev mode or on github action mode.
+                        Valid values are 'local' or 'github'
+  -f FILE, --file FILE  configuration file to read from when running local-dev
+                        mode
+  -o OUTPUT, --output OUTPUT
+                        output file when running local-dev mode
+  -t TOKEN, --token TOKEN
+                        Github Access Token
+```
+
 ### Contributors
 
 <table>
