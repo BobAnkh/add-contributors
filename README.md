@@ -70,9 +70,11 @@ jobs:
 
 ## How to contribute
 
-You should follow our [Code of Conduct](/CODE_OF_CONDUCT.md)
+You should follow our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
-See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for contributing conventions
+See [CONTRIBUTING GUIDELINES](/CONTRIBUTING.md) for contributing conventions.
+
+Make sure to pass all the tests before submitting your code. You can conduct `pytest -ra` at the root directory to run all tests.
 
 You can use local mode when develope it on your local machine, here is the command-line help info:
 
