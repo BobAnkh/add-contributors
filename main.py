@@ -5,7 +5,7 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2021-01-09 12:19:49
+# @LastEditTime : 2021-01-14 20:29:15
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -259,6 +259,8 @@ def set_env_from_file(file, args, prefix='INPUT'):
                     tmp = args.token
                 else:
                     tmp = input('Please input the value of ' + param + ':')
+            else:
+                tmp = params[param]
         else:
             tmp = params[param]
         set_local_env(param, tmp, prefix)
