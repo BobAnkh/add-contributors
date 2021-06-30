@@ -1,4 +1,4 @@
-FROM python:3.9.5-slim
+FROM python:3.10.0b3-slim
 
 COPY main.py entrypoint.sh requirements.txt /
 RUN chmod +x /entrypoint.sh /main.py
