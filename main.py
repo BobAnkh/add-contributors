@@ -145,7 +145,7 @@ def get_inputs(input_name):
 
 
 def generate_contributors_table(contributors_data, COLUMN_PER_ROW, img_width,
-                                font_size, head_format, tail_format, shape):
+                                font_size, head_format, tail_format, shape, IGNORED_CONTRIBUTORS):
     '''
     Generate the contributors table in html format using a given template
 
@@ -167,27 +167,28 @@ def generate_contributors_table(contributors_data, COLUMN_PER_ROW, img_width,
     cell_width = 1.5 * img_width
     cell_height = 1.5 * img_width
     for contributor in contributors_data:
-        name = contributor['name']
-        avatar_url = contributor['avatar_url']
-        html_url = contributor['html_url']
-        if USER >= COLUMN_PER_ROW:
-            new_tr = '''\n</tr>\n<tr>'''
-            HEAD = HEAD + new_tr
-            USER = 0
-        if shape == 'round':
-            img_style = ' style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px"'
-        else:
-            img_style = ''
-        td = f'''
-    <td align="center" style="word-wrap: break-word; width: {cell_width}; height: {cell_height}">
-        <a href={html_url}>
-            <img src={avatar_url} width="{img_width};" {img_style} alt={name}/>
-            <br />
-            <sub style="font-size:{font_size}px"><b>{name}</b></sub>
-        </a>
-    </td>'''
-        HEAD = HEAD + td
-        USER += 1
+        if contributor['name'] not in IGNORED_CONTRIBUTORS:
+            name = contributor['name']
+            avatar_url = contributor['avatar_url']
+            html_url = contributor['html_url']
+            if USER >= COLUMN_PER_ROW:
+                new_tr = '''\n</tr>\n<tr>'''
+                HEAD = HEAD + new_tr
+                USER = 0
+            if shape == 'round':
+                img_style = ' style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px"'
+            else:
+                img_style = ''
+            td = f'''
+        <td align="center" style="word-wrap: break-word; width: {cell_width}; height: {cell_height}">
+            <a href={html_url}>
+                <img src={avatar_url} width="{img_width};" {img_style} alt={name}/>
+                <br />
+                <sub style="font-size:{font_size}px"><b>{name}</b></sub>
+            </a>
+        </td>'''
+            HEAD = HEAD + td
+            USER += 1
     HEAD = HEAD + TAIL
     return HEAD
 
