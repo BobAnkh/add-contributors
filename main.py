@@ -5,7 +5,7 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2021-07-16 13:31:39
+# @LastEditTime : 2021-07-16 18:36:39
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -272,7 +272,7 @@ def set_env_from_file(file, args, prefix='INPUT'):
 def main():
     args = argument_parser()
     if args.mode == 'local':
-        set_env_from_file('.github/workflows/contributors.yml', args)
+        set_env_from_file(args.file, args)
     elif args.mode == 'github':
         pass
     else:
