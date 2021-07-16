@@ -5,7 +5,7 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2021-01-14 20:29:15
+# @LastEditTime : 2021-07-16 13:31:39
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -53,7 +53,7 @@ class GithubContributors:
 
     Use it to get contributors data and file content from Github and write new file content to Github
     '''
-    def __init__(self, ACCESS_TOKEN, REPO_NAME, PATH, BRANCH, COMMIT_MESSAGE):
+    def __init__(self, ACCESS_TOKEN, REPO_NAME, PATH, BRANCH, COMMIT_MESSAGE, IGNORED_CONTRIBUTORS):
         '''
         Initial GithubContributors
 
@@ -67,6 +67,7 @@ class GithubContributors:
         self.COMMIT_MESSAGE = COMMIT_MESSAGE
         self.PATH = PATH
         self.BRANCH = BRANCH
+        self.IGNORED_CONTRIBUTORS = IGNORED_CONTRIBUTORS
         self.SHA = ''
         self.contributors_data = []
         self.file_content = ''
@@ -82,6 +83,8 @@ class GithubContributors:
             name = contributor.name
             avatar_url = contributor.avatar_url
             html_url = contributor.html_url
+            if name in self.IGNORED_CONTRIBUTORS:
+                continue
             if re.match('https://github.com/apps/', html_url):
                 continue
             if name == None:
@@ -233,7 +236,7 @@ def set_env_from_file(file, args, prefix='INPUT'):
 
     Args:
         file (str): path to config file
-        args (object): argument
+        args (object): cmdline argument
         prefix (str, optional): prefix of env. Defaults to 'INPUT'.
     '''
     f = open(file, encoding='utf-8')
@@ -245,11 +248,11 @@ def set_env_from_file(file, args, prefix='INPUT'):
                 break
     option_params = [
         'REPO_NAME', 'CONTRIBUTOR', 'COLUMN_PER_ROW', 'ACCESS_TOKEN',
-        'IMG_WIDTH', 'FONT_SIZE', 'PATH', 'COMMIT_MESSAGE', 'AVATAR_SHAPE'
+        'IMG_WIDTH', 'FONT_SIZE', 'PATH', 'COMMIT_MESSAGE', 'AVATAR_SHAPE', 'IGNORED_CONTRIBUTORS'
     ]
     for param in option_params:
         if param not in params.keys():
-            if args.token:
+            if param == 'ACCESS_TOKEN' and args.token:
                 tmp = args.token
             else:
                 tmp = input('Please input the value of ' + param + ':')
@@ -289,8 +292,9 @@ def main():
         BRANCH = github.GithubObject.NotSet
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
     AVATAR_SHAPE = get_inputs('AVATAR_SHAPE')
+    IGNORED_CONTRIBUTORS = [x.lstrip().rstrip() for x in get_inputs('IGNORED_CONTRIBUTORS').split(',')]
     Contributors = GithubContributors(ACCESS_TOKEN, REPO_NAME, PATH, BRANCH,
-                                      COMMIT_MESSAGE)
+                                      COMMIT_MESSAGE, IGNORED_CONTRIBUTORS)
     Contributors.get_data()
     contributors_table = generate_contributors_table(
         Contributors.read_contributors(), COLUMN_PER_ROW, IMG_WIDTH, FONT_SIZE,
