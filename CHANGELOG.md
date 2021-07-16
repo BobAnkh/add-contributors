@@ -1,5 +1,44 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- local:
+  - add args-specify config file ([774a109](https://github.com/BobAnkh/add-contributors/commit/774a10968205067ec224f5fce2e4c28b9f83d1bb))
+
+## [v0.2.0](https://github.com/BobAnkh/add-contributors/releases/tag/v0.2.0) - 2021-07-16 06:47:07
+
+Add a new feature proposed in #46 to exclude certain contributors(e.g.  @renovate-bot and @codacy-badger)
+
+Resolves: #46 
+
+### Feature
+
+- contributor:
+  - support to ignore ocntributors ([d049565](https://github.com/BobAnkh/add-contributors/commit/d0495656fe47ec6cec1837b7bcf0a2b953ed9b92))
+
+### Bug Fixes
+
+- local:
+  - resolve token read from file in local-dev mode ([5621757](https://github.com/BobAnkh/add-contributors/commit/5621757f674df38b746d57711f6d44a52442e23f))
+
+### Documentation
+
+- contributor:
+  - update params usage ([2acb218](https://github.com/BobAnkh/add-contributors/commit/2acb2184554d1984a2e956f809b7490121cc980d))
+
+- README:
+  - update contributors ([969bc58](https://github.com/BobAnkh/add-contributors/commit/969bc58d3e0e3b6e71083ef0c6631ff1fa696750))
+  - add info for tests ([6647d3d](https://github.com/BobAnkh/add-contributors/commit/6647d3d22547d2a5865e2b3d1bf24e92f076b5fa))
+
+### Performance Improvements
+
+- Dockerfile:
+  - merge layers ([1f8ecc6](https://github.com/BobAnkh/add-contributors/commit/1f8ecc6677001e72a8498a37b2c4d04d59a5587b))
+
 ## [v0.1.0](https://github.com/BobAnkh/add-contributors/releases/tag/v0.1.0) - 2021-01-09 04:21:08
 
 Refactor the data structure. No breaking changes. Prepare to add some tests
@@ -44,26 +83,22 @@ Change layout of contributors table to make it more beautiful.
 - locate:
   - change locate feature ([ef71274](https://github.com/BobAnkh/add-contributors/commit/ef71274049fccc95376b272ca95cacb32eaed9b8))
 
+- branch:
+  - support other branches ([259b7be](https://github.com/BobAnkh/add-contributors/commit/259b7be4bac24805894e343bb58595a6d0bfba80)) ([#32](https://github.com/BobAnkh/add-contributors/pull/32))
+
 ### Documentation
 
 - README:
   - update contributors ([f229687](https://github.com/BobAnkh/add-contributors/commit/f2296872426a5a36168cdf73691035a3da5df4f1))
+
+- CONTRIBUTING:
+  - update style guide ([10dd8c7](https://github.com/BobAnkh/add-contributors/commit/10dd8c7c6d6b2504da3b973487236659827a7968))
 
 ## [v0.0.7](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.7) - 2020-12-06 05:28:10
 
 Support other branches.
 
 You can use format like `<branch>:<file>` in input `PATH`, e.g. `dev:/README.md`, to specify the branch of your file.
-
-### Bug Fixes
-
-- branch:
-  - support other branches ([259b7be](https://github.com/BobAnkh/add-contributors/commit/259b7be4bac24805894e343bb58595a6d0bfba80)) ([#32](https://github.com/BobAnkh/add-contributors/pull/32))
-
-### Documentation
-
-- CONTRIBUTING:
-  - update style guide ([10dd8c7](https://github.com/BobAnkh/add-contributors/commit/10dd8c7c6d6b2504da3b973487236659827a7968))
 
 ## [v0.0.6](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.6) - 2020-10-20 05:35:37
 
@@ -74,6 +109,11 @@ Add more ErrorLog to output, making it more easier to debug
 - ErrorLog:
   - enhace error log readabiity ([38100e5](https://github.com/BobAnkh/add-contributors/commit/38100e55eac669aaba90eac26cd0ccf4ba061a94)) ([#11](https://github.com/BobAnkh/add-contributors/pull/11))
 
+### Bug Fixes
+
+- dockerfile:
+  - use chmod to deal with  execution permission issue ([1082568](https://github.com/BobAnkh/add-contributors/commit/10825686580c7fc9c4ad5206546b29197dcb684a))
+
 ### Documentation
 
 - README:
@@ -81,30 +121,19 @@ Add more ErrorLog to output, making it more easier to debug
   - update contributors ([79f4e9e](https://github.com/BobAnkh/add-contributors/commit/79f4e9e5557d1a8bd636bf770b158eb02ac27319))
   - update contributors ([d14fb80](https://github.com/BobAnkh/add-contributors/commit/d14fb809966275e9fd7adbae0ee38deba4ca7013))
   - add a new badge ([b5a61b6](https://github.com/BobAnkh/add-contributors/commit/b5a61b6dff51007e9b30dde6ea9ad90f5a9eee59))
-  - add new badge - add code quality from codacy ([92ff165](https://github.com/BobAnkh/add-contributors/commit/92ff16504cd29a43fa5b65817ec1e41fd145a066))
-
-## [v0.0.5](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.5) - 2020-08-10 07:02:43
-
-See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELOG.md) for changes
-
-### Bug Fixes
-
-- dockerfile:
-  - use chmod to deal with   execution permission issue ([1082568](https://github.com/BobAnkh/add-contributors/commit/10825686580c7fc9c4ad5206546b29197dcb684a))
-
-### Documentation
-
-- CONTRIBUTING.md:
-  - change a word ([d285f3d](https://github.com/BobAnkh/add-contributors/commit/d285f3d387f52d051f6b3e9a3041a6310ab9b5d1))
-  - fix a typo ([efe4f7a](https://github.com/BobAnkh/add-contributors/commit/efe4f7af7793b1031e58883e2f90331c6fada4da))
-
-- README:
-  - add new badge - add code quality from codacy ([92ff165](https://github.com/BobAnkh/add-contributors/commit/92ff16504cd29a43fa5b65817ec1e41fd145a066))
   - update table format ([82edd07](https://github.com/BobAnkh/add-contributors/commit/82edd072da7bf65810fdf7ef77f482106acc2bb8))
 
 - CONTRIBUTING:
   - update format ([000568d](https://github.com/BobAnkh/add-contributors/commit/000568dc0ced4809688d82b64648347618f890a1))
   - refactor to have styleguide ([4a472af](https://github.com/BobAnkh/add-contributors/commit/4a472afecff5695701245579a17f60731fa8cccc))
+
+- CONTRIBUTING.md:
+  - change a word ([d285f3d](https://github.com/BobAnkh/add-contributors/commit/d285f3d387f52d051f6b3e9a3041a6310ab9b5d1))
+  - fix a typo ([efe4f7a](https://github.com/BobAnkh/add-contributors/commit/efe4f7af7793b1031e58883e2f90331c6fada4da))
+
+## [v0.0.5](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.5) - 2020-08-10 07:02:43
+
+See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELOG.md) for changes
 
 ## [v0.0.4](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.4) - 2020-07-30 02:53:51
 
@@ -134,14 +163,14 @@ See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELO
 
 ### Documentation
 
+- usage:
+  - update parameters and example ([2a1515a](https://github.com/BobAnkh/add-contributors/commit/2a1515a6ead2f2cd0bb8318e98135d6c2e5faf0a)) ([#3](https://github.com/BobAnkh/add-contributors/pull/3))
+
 - *:
   - add CONTRIBUTING.md ([bd43b70](https://github.com/BobAnkh/add-contributors/commit/bd43b70b6749d162ed0ccfec8b547eb1184600b2))
 
 - README:
   - update introduction and contributing ([2eeb56c](https://github.com/BobAnkh/add-contributors/commit/2eeb56cf080102e25f3c9ee527901c3c49c0b098))
-
-- usage:
-  - update parameters and example ([2a1515a](https://github.com/BobAnkh/add-contributors/commit/2a1515a6ead2f2cd0bb8318e98135d6c2e5faf0a)) ([#3](https://github.com/BobAnkh/add-contributors/pull/3))
 
 ## [v0.0.2](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.2) - 2020-07-27 01:58:37
 
@@ -157,9 +186,6 @@ v0.0.2
 
 ### Bug Fixes
 
-- action:
-  - fix secrets typo ([ccc0500](https://github.com/BobAnkh/add-contributors/commit/ccc05002f06f01a61e2a78df7d33b74864ed50f0))
-
 - main:
   - fix the format for first time ([4cb8252](https://github.com/BobAnkh/add-contributors/commit/4cb8252210addd677b7c6ca30a8b683b36a7b554))
   - fix the format for first time ([ad55b4b](https://github.com/BobAnkh/add-contributors/commit/ad55b4b73ce4e569f9499c98ece268d76327f3de))
@@ -168,6 +194,9 @@ v0.0.2
 
 - entrypoint:
   - correct permission to be excuted ([72cf66c](https://github.com/BobAnkh/add-contributors/commit/72cf66c534174f6f9dd5a268f19044c8274e0c6d))
+
+- action:
+  - fix secrets typo ([ccc0500](https://github.com/BobAnkh/add-contributors/commit/ccc05002f06f01a61e2a78df7d33b74864ed50f0))
 
 - token:
   - change token-required to be true ([e91599c](https://github.com/BobAnkh/add-contributors/commit/e91599cc099f4da32fbd95fd5ce58249502e69fe))
