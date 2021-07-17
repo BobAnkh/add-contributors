@@ -5,7 +5,7 @@
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
 # @LastEditors  : Please set LastEditors
-# @LastEditTime : 2021-07-16 18:36:39
+# @LastEditTime : 2021-07-17 10:35:08
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -79,16 +79,16 @@ class GithubContributors:
     def get_data(self):
         # get contributors data
         contributors = self.repo.get_contributors()
+        print('[DEBUG]All contributors\' names:')
         for contributor in contributors:
             name = contributor.name
             avatar_url = contributor.avatar_url
             html_url = contributor.html_url
-            if name in self.IGNORED_CONTRIBUTORS:
-                continue
-            if re.match('https://github.com/apps/', html_url):
-                continue
             if name == None:
                 name = html_url[19:]
+            print(f'[DEBUG]{name}:{html_url}')
+            if name in self.IGNORED_CONTRIBUTORS or re.match('apps/', name):
+                continue
             self.contributors_data.append({
                 'name': name,
                 'avatar_url': avatar_url,
