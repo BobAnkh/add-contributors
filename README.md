@@ -64,6 +64,8 @@ jobs:
 > NOTE: You can use `<branch>:<file>` format to specify the branch where your file is located. e.g. 'dev:/README.md'
 >
 > NOTE: Github seems not support image style in markdown file rendering yet
+>
+> NOTE: `IGNORED_CONTRIBUTORS` takes **display name** not **username**
 
 ## Maintainer
 
