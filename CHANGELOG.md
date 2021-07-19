@@ -1,13 +1,23 @@
 # CHANGELOG
 
-## Unreleased
+## [v0.2.1](https://github.com/BobAnkh/add-contributors/releases/tag/v0.2.1) - 2021-07-17 03:39:06
 
-Changes unreleased.
+Fix some small bugs:
+- now can specify debug config file in args
+- now can exclude no-name accounts
 
 ### Bug Fixes
 
+- contributor:
+  - fix no name accounts' exclusion ([73c1109](https://github.com/BobAnkh/add-contributors/commit/73c1109d057357e2a76e71fe00db880f02c0ff5d))
+
 - local:
   - add args-specify config file ([774a109](https://github.com/BobAnkh/add-contributors/commit/774a10968205067ec224f5fce2e4c28b9f83d1bb))
+
+### Documentation
+
+- readme:
+  - update usage note of attributes ([1f2cd9f](https://github.com/BobAnkh/add-contributors/commit/1f2cd9f3e95509ba5437f0f028915d1792782eb1))
 
 ## [v0.2.0](https://github.com/BobAnkh/add-contributors/releases/tag/v0.2.0) - 2021-07-16 06:47:07
 
@@ -83,22 +93,26 @@ Change layout of contributors table to make it more beautiful.
 - locate:
   - change locate feature ([ef71274](https://github.com/BobAnkh/add-contributors/commit/ef71274049fccc95376b272ca95cacb32eaed9b8))
 
-- branch:
-  - support other branches ([259b7be](https://github.com/BobAnkh/add-contributors/commit/259b7be4bac24805894e343bb58595a6d0bfba80)) ([#32](https://github.com/BobAnkh/add-contributors/pull/32))
-
 ### Documentation
 
 - README:
   - update contributors ([f229687](https://github.com/BobAnkh/add-contributors/commit/f2296872426a5a36168cdf73691035a3da5df4f1))
 
-- CONTRIBUTING:
-  - update style guide ([10dd8c7](https://github.com/BobAnkh/add-contributors/commit/10dd8c7c6d6b2504da3b973487236659827a7968))
-
-## [v0.0.7](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.7) - 2020-12-06 05:28:10
+## [v0.0.7](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.7) - 2021-07-16 11:29:55
 
 Support other branches.
 
 You can use format like `<branch>:<file>` in input `PATH`, e.g. `dev:/README.md`, to specify the branch of your file.
+
+### Bug Fixes
+
+- branch:
+  - support other branches ([259b7be](https://github.com/BobAnkh/add-contributors/commit/259b7be4bac24805894e343bb58595a6d0bfba80)) ([#32](https://github.com/BobAnkh/add-contributors/pull/32))
+
+### Documentation
+
+- CONTRIBUTING:
+  - update style guide ([10dd8c7](https://github.com/BobAnkh/add-contributors/commit/10dd8c7c6d6b2504da3b973487236659827a7968))
 
 ## [v0.0.6](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.6) - 2020-10-20 05:35:37
 
@@ -109,6 +123,17 @@ Add more ErrorLog to output, making it more easier to debug
 - ErrorLog:
   - enhace error log readabiity ([38100e5](https://github.com/BobAnkh/add-contributors/commit/38100e55eac669aaba90eac26cd0ccf4ba061a94)) ([#11](https://github.com/BobAnkh/add-contributors/pull/11))
 
+### Documentation
+
+- README:
+  - update contributors ([3b36628](https://github.com/BobAnkh/add-contributors/commit/3b36628ac13c7f3cdc6d0d521150f39d1e25ee11))
+  - update contributors ([79f4e9e](https://github.com/BobAnkh/add-contributors/commit/79f4e9e5557d1a8bd636bf770b158eb02ac27319))
+  - update contributors ([d14fb80](https://github.com/BobAnkh/add-contributors/commit/d14fb809966275e9fd7adbae0ee38deba4ca7013))
+
+## [v0.0.5](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.5) - 2021-07-16 11:28:44
+
+See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELOG.md) for changes
+
 ### Bug Fixes
 
 - dockerfile:
@@ -117,9 +142,6 @@ Add more ErrorLog to output, making it more easier to debug
 ### Documentation
 
 - README:
-  - update contributors ([3b36628](https://github.com/BobAnkh/add-contributors/commit/3b36628ac13c7f3cdc6d0d521150f39d1e25ee11))
-  - update contributors ([79f4e9e](https://github.com/BobAnkh/add-contributors/commit/79f4e9e5557d1a8bd636bf770b158eb02ac27319))
-  - update contributors ([d14fb80](https://github.com/BobAnkh/add-contributors/commit/d14fb809966275e9fd7adbae0ee38deba4ca7013))
   - add a new badge ([b5a61b6](https://github.com/BobAnkh/add-contributors/commit/b5a61b6dff51007e9b30dde6ea9ad90f5a9eee59))
   - update table format ([82edd07](https://github.com/BobAnkh/add-contributors/commit/82edd072da7bf65810fdf7ef77f482106acc2bb8))
 
@@ -130,10 +152,6 @@ Add more ErrorLog to output, making it more easier to debug
 - CONTRIBUTING.md:
   - change a word ([d285f3d](https://github.com/BobAnkh/add-contributors/commit/d285f3d387f52d051f6b3e9a3041a6310ab9b5d1))
   - fix a typo ([efe4f7a](https://github.com/BobAnkh/add-contributors/commit/efe4f7af7793b1031e58883e2f90331c6fada4da))
-
-## [v0.0.5](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.5) - 2020-08-10 07:02:43
-
-See [CHANGELOG](https://github.com/BobAnkh/add-contributors/blob/master/CHANGELOG.md) for changes
 
 ## [v0.0.4](https://github.com/BobAnkh/add-contributors/releases/tag/v0.0.4) - 2020-07-30 02:53:51
 
