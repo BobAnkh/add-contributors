@@ -4,8 +4,8 @@
 # @Author       : BobAnkh
 # @Github       : https://github.com/BobAnkh
 # @Date         : 2020-07-29 00:12:39
-# @LastEditors  : Please set LastEditors
-# @LastEditTime : 2021-09-24 11:00:50
+# @LastEditors  : BobAnkh
+# @LastEditTime : 2021-09-24 16:28:29
 # @FilePath     : /add-contributors/main.py
 # @Description  : Main script of Github Action
 # @Copyright 2020 BobAnkh
@@ -53,7 +53,7 @@ class GithubContributors:
 
     Use it to get contributors data and file content from Github and write new file content to Github
     '''
-    def __init__(self, ACCESS_TOKEN, REPO_NAME, PATH, BRANCH, COMMIT_MESSAGE, IGNORED_CONTRIBUTORS):
+    def __init__(self, ACCESS_TOKEN, REPO_NAME, PATH, BRANCH, PULL_REQUEST, COMMIT_MESSAGE, IGNORED_CONTRIBUTORS):
         '''
         Initial GithubContributors
 
@@ -62,11 +62,13 @@ class GithubContributors:
             REPO_NAME (str): The name of the repository
             PATH (str): The path to the file
             BRANCH (str): The branch of the file
+            PULL_REQUEST (str): Pull request target branch, none means do not open a pull request
             COMMIT_MESSAGE (str): Commit message you want to use
         '''
         self.COMMIT_MESSAGE = COMMIT_MESSAGE
         self.PATH = PATH
         self.BRANCH = BRANCH
+        self.PULL_REQUEST = PULL_REQUEST
         self.IGNORED_CONTRIBUTORS = IGNORED_CONTRIBUTORS
         self.SHA = ''
         self.contributors_data = []
@@ -108,6 +110,9 @@ class GithubContributors:
         else:
             self.repo.update_file(self.PATH, self.COMMIT_MESSAGE, content,
                                   self.SHA, self.BRANCH)
+            print(f'[DEBUG] BRANCH: {self.BRANCH}, PULL_REQUEST: {self.PULL_REQUEST}')
+            if self.PULL_REQUEST != '' and self.PULL_REQUEST != self.BRANCH:
+                self.repo.create_pull(title=self.COMMIT_MESSAGE, base=self.PULL_REQUEST, head=self.BRANCH)
 
     def read_contributors(self):
         return self.contributors_data
@@ -294,10 +299,11 @@ def main():
     BRANCH = get_inputs('BRANCH')
     if BRANCH == '':
         BRANCH = github.GithubObject.NotSet
+    PULL_REQUEST = get_inputs('PULL_REQUEST')
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
     AVATAR_SHAPE = get_inputs('AVATAR_SHAPE')
     IGNORED_CONTRIBUTORS = [x.lstrip().rstrip() for x in get_inputs('IGNORED_CONTRIBUTORS').split(',')]
-    Contributors = GithubContributors(ACCESS_TOKEN, REPO_NAME, PATH, BRANCH,
+    Contributors = GithubContributors(ACCESS_TOKEN, REPO_NAME, PATH, BRANCH, PULL_REQUEST,
                                       COMMIT_MESSAGE, IGNORED_CONTRIBUTORS)
     Contributors.get_data()
     contributors_table = generate_contributors_table(
