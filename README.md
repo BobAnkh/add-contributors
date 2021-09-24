@@ -45,19 +45,20 @@ jobs:
 
 ### Parameters
 
-| Parameter            | Description                                                 | Required | Default                                       |
-| -------------------- | ----------------------------------------------------------- | -------- | --------------------------------------------- |
-| REPO_NAME            | Repository name                                             | no       | `''` which means current repository           |
-| CONTRIBUTOR          | Where you want to add contributors list                     | no       | `### Contributors`                            |
-| COLUMN_PER_ROW       | Number of contributors per row                              | no       | `6`                                           |
-| ACCESS_TOKEN         | Github Access Token                                         | yes      | You can just pass `${{secrets.GITHUB_TOKEN}}` |
-| IMG_WIDTH            | Width of img                                                | no       | `100`                                         |
-| FONT_SIZE            | Font size of name (px)                                      | no       | `14`                                          |
-| PATH                 | Path to the file you want to add contributors' list         | no       | `/README.md`                                  |
-| BRANCH               | The branch to update file specified in PATH                 | no       | `''` which means default branch               |
-| COMMIT_MESSAGE       | commit message                                              | no       | `docs(README): update contributors`           |
-| AVATAR_SHAPE         | Set `round` for round avatar and `square` for square avatar | no       | square                                        |
-| IGNORED_CONTRIBUTORS | Ignored contributors, seperated by comma                    | no       | `''`                                          |
+| Parameter            | Description                                                 | Required | Default                                            |
+| -------------------- | ----------------------------------------------------------- | -------- | -------------------------------------------------- |
+| REPO_NAME            | Repository name                                             | no       | `''` which means current repository                |
+| CONTRIBUTOR          | Where you want to add contributors list                     | no       | `### Contributors`                                 |
+| COLUMN_PER_ROW       | Number of contributors per row                              | no       | `6`                                                |
+| ACCESS_TOKEN         | Github Access Token                                         | yes      | You can just pass `${{secrets.GITHUB_TOKEN}}`      |
+| IMG_WIDTH            | Width of img                                                | no       | `100`                                              |
+| FONT_SIZE            | Font size of name (px)                                      | no       | `14`                                               |
+| PATH                 | Path to the file you want to add contributors' list         | no       | `/README.md`                                       |
+| BRANCH               | The branch to update file specified in PATH                 | no       | `''` which means default branch                    |
+| PULL_REQUEST         | Open a new pull request if set to a target branch name      | no       | `''` which means not open pull request by default  |
+| COMMIT_MESSAGE       | commit message                                              | no       | `docs(README): update contributors`                |
+| AVATAR_SHAPE         | Set `round` for round avatar and `square` for square avatar | no       | square                                             |
+| IGNORED_CONTRIBUTORS | Ignored contributors, seperated by comma                    | no       | `''`                                               |
 
 > NOTE: You should leave a blank line after the `CONTRIBUTOR` line for the first time
 >
