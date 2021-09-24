@@ -112,7 +112,7 @@ class GithubContributors:
                                   self.SHA, self.BRANCH)
             print(f'[DEBUG] BRANCH: {self.BRANCH}, PULL_REQUEST: {self.PULL_REQUEST}')
             if self.PULL_REQUEST != '' and self.PULL_REQUEST != self.BRANCH:
-                self.repo.create_pull(title=self.COMMIT_MESSAGE, base=self.PULL_REQUEST, head=self.BRANCH)
+                self.repo.create_pull(title=self.COMMIT_MESSAGE, base=self.PULL_REQUEST, head=self.BRANCH, draft=False, maintainer_can_modify=True)
 
     def read_contributors(self):
         return self.contributors_data
