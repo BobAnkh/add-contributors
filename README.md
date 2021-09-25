@@ -65,6 +65,8 @@ jobs:
 > NOTE: Github seems not support image style in markdown file rendering yet
 >
 > NOTE: `IGNORED_CONTRIBUTORS` takes **display name** not **username**
+> 
+> NOTE: `PULL_REQUEST` must be used with `BRANCH` together, both **should be provided** if you want to **open a pull request**
 
 ## Maintainer
 
