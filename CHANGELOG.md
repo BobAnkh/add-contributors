@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## [v0.2.2](https://github.com/BobAnkh/add-contributors/releases/tag/v0.2.2) - 2021-09-25 02:39:12
+
+New Feature:
+- Split param `PATH` into `PATH` and `BRANCH`: you can specify which file path in `PATH` param and which branch to update changes in `BRANCH` param.
+- Add new param `PULL_REQUEST`, which must be used together with param `BRANCH`. Default set to `''` means not to open a pull request. You can set a target branch name in `PULL_REQUEST` that is different with `BRANCH` so that to do the following things:
+    - Commit changes(if have) to file specified in `PATH` in `BRANCH`(if not set means default branch)
+    - If `PULL_REQUEST` set to a different branch with `BRANCH` then a new pull request will be opened.
+
+### Feature
+
+- pull:
+  - add new param for pull request ([6a63a21](https://github.com/BobAnkh/add-contributors/commit/6a63a219eb27541846688e999539d2f70df818e5))
+
+- param:
+  - add repo detect and BRANCH option ([74cbba3](https://github.com/BobAnkh/add-contributors/commit/74cbba39759181b381edd659674c5ab0d65e3bc8))
+
+### Bug Fixes
+
+- main:
+  - resolve create_pull func call (#50) ([70fb0e5](https://github.com/BobAnkh/add-contributors/commit/70fb0e516dcf18549ef503dd6a8d6295f5a1dc19)) ([#50](https://github.com/BobAnkh/add-contributors/pull/50))
+  - resolve `create_pull` func call ([db74794](https://github.com/BobAnkh/add-contributors/commit/db747947e2a4135486cfc34ec02da07016f240ce))
+
+### Documentation
+
+- readme:
+  - update usage of new param ([de6c43a](https://github.com/BobAnkh/add-contributors/commit/de6c43a0c154b093a210d8bdf7ab283aba8452dd))
+  - update usage for new param ([57aa424](https://github.com/BobAnkh/add-contributors/commit/57aa42418b403c07faf93b700d2349c0231cc53f))
+  - update usage for params ([889f1c9](https://github.com/BobAnkh/add-contributors/commit/889f1c92705c63af28354e01dac9349607526960))
+
+- README:
+  - update contributors ([b4ec2db](https://github.com/BobAnkh/add-contributors/commit/b4ec2dbcd07093b997b9f6ace9bb5a467b93339c))
+
 ## [v0.2.1](https://github.com/BobAnkh/add-contributors/releases/tag/v0.2.1) - 2021-07-17 03:39:06
 
 Fix some small bugs:
